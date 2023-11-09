@@ -1,0 +1,307 @@
+:root {
+  --standart-color: #222222;
+  --secondary-color: #a3a3a5;
+  --red-color: #3e3092;
+  --colred-color: #f4223c;
+
+  --custom-font: Ubuntu;
+}
+.allWrapInFirst {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.firstBlockWrap {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  margin-bottom: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.videoBackground {
+  position: absolute;
+  object-fit: cover;
+  height: 100vh;
+  top: 0;
+  width: 100%;
+}
+.wrapInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+}
+.h2Firs {
+  text-transform: uppercase;
+  font-family: var(--custom-font);
+  font-size: 20px;
+  color: var(--standart-color);
+  letter-spacing: 4px;
+}
+.h2FirsD {
+  text-transform: uppercase;
+  font-family: var(--custom-font);
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--standart-color);
+  margin-top: 0;
+  letter-spacing: 4px;
+}
+.buttonWrap {
+  width: 450px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.register {
+  width: auto;
+  height: 30px;
+  border: 2px solid var(--standart-color);
+  background: none;
+  font-size: 13px;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-family: var(--custom-font);
+  letter-spacing: 3px;
+  cursor: pointer;
+}
+.register:hover {
+  background: var(--standart-color);
+  color: var(--secondary-color);
+}
+.hrefA {
+  text-decoration: none;
+  width: auto;
+  height: 30px;
+  border: 2px solid var(--standart-color);
+  background: none;
+  font-size: 13px;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-family: var(--custom-font);
+  letter-spacing: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--standart-color);
+}
+.hrefA:hover {
+  background: var(--standart-color);
+  color: var(--secondary-color);
+}
+.or {
+  font-family: var(--custom-font);
+  font-size: 14px;
+  color: var(--standart-color);
+}
+@keyframes bounceAnimation {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px); /* Підстрибнути на 5 пікселів вгору */
+  }
+}
+.skakalka {
+  position: absolute;
+  z-index: 4;
+  bottom: 40px;
+  width: 20px;
+  height: 30px;
+  border-radius: 30px;
+  border: 2px solid var(--standart-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  animation: bounceAnimation 0.9s ease-in-out infinite;
+}
+.strv {
+  width: 5px;
+  height: 5px;
+  background: var(--secondary-color);
+  border-radius: 50%;
+  animation: bounceAnimation 0.9s ease-in-out infinite;
+}
+.secondBlockWr {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.serviceO {
+  font-family: var(--custom-font);
+  color: var(--standart-color);
+  font-weight: bold;
+  font-size: 30px;
+  letter-spacing: 4px;
+  margin-top: 70px;
+}
+.serviseP {
+  font-family: var(--custom-font);
+  font-size: 20px;
+  margin-top: 0;
+  color: var(--standart-color);
+}
+.wrapSer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapFir {
+  width: calc(340px - 40px);
+  height: calc(340px - 40px);
+  padding: 20px 20px 20px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-right: 100px;
+  transition: all 0.5s ease;
+}
+.wrapFir:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+}
+.number {
+  font-family: var(--custom-font);
+  font-size: 80px;
+  align-self: flex-end;
+  color: var(--secondary-color);
+  margin: 0;
+  transition: transform 0.5s ease;
+}
+.wrapFir:hover .number {
+  transform: translateX(-260px);
+}
+.deckWak {
+  font-size: 26px;
+  font-family: var(--custom-font);
+  color: var(--standart-color);
+  margin-top: 0;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.hpd {
+  font-family: var(--custom-font);
+  font-size: 17px;
+  color: var(--secondary-color);
+}
+.registerBU {
+  flex-shrink: 0;
+  width: auto;
+  height: 30px;
+  border: 2px solid var(--standart-color);
+  background: none;
+  font-size: 14px;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-family: var(--custom-font);
+  letter-spacing: 3px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.registerBU:hover {
+  background: var(--standart-color);
+  color: var(--secondary-color);
+}
+.serviceOD {
+  font-family: var(--custom-font);
+  color: var(--secondary-color);
+  font-weight: bold;
+  font-size: 30px;
+  letter-spacing: 4px;
+  margin-top: 70px;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+}
+.wrapBlackB {
+  width: 100%;
+  height: 212px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: black;
+  margin-top: 100px;
+}
+.needReg {
+  color: var(--secondary-color);
+  font-family: var(--custom-font);
+  font-size: 30px;
+  text-transform: uppercase;
+  margin-top: 0;
+}
+.purch {
+  width: auto;
+  height: 40px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
+  font-family: var(--custom-font);
+  background: none;
+  font-size: 17px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.purch:hover {
+  color: black;
+  background: white;
+  border: 2px solid white;
+}
+.fourSectionWrap {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 100px;
+}
+.wrapPrev {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+.blackWithIcon {
+  width: 300px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mdOutlineMonetizationOn {
+  color: var(--secondary-color);
+  font-size: 80px;
+}
+.titleM {
+  font-family: var(--custom-font);
+  color: var(--standart-color);
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.titleMDesc {
+  font-family: var(--custom-font);
+  color: var(--secondary-color);
+  font-size: 18px;
+  text-align: center;
+}
