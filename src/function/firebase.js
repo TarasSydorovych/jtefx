@@ -5,13 +5,15 @@ import { getAuth, listUsers } from "firebase/auth";
 import { OAuthProvider, signInWithRedirect } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 export const firebaseConfig = {
-  apiKey: "AIzaSyCBA7D_sUGLuD1top6cwXSy_lDJKo4YMto",
-  authDomain: "jtefx-3faec.firebaseapp.com",
-  projectId: "jtefx-3faec",
-  storageBucket: "jtefx-3faec.appspot.com",
-  messagingSenderId: "418583796255",
-  appId: "1:418583796255:web:a1c27667da5d159a1b932a",
-  measurementId: "G-VG4TVDJ9ZD",
+  apiKey: "AIzaSyBp7Vh74FRzirfMHgNFaIoLNXCXlmPdmvA",
+  authDomain: "jtefx-353bb.firebaseapp.com",
+  databaseURL:
+    "https://jtefx-353bb-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "jtefx-353bb",
+  storageBucket: "jtefx-353bb.appspot.com",
+  messagingSenderId: "331185217504",
+  appId: "1:331185217504:web:6aa8ad34db9daf8f779585",
+  measurementId: "G-E6WQ26WCFX",
 };
 
 export const app = initializeApp(firebaseConfig);

@@ -1,0 +1,127 @@
+:root {
+  --standart-color: #222222;
+  --secondary-color: #a3a3a5;
+  --red-color: #3e3092;
+  --colred-color: #f4223c;
+
+  --custom-font: Ubuntu;
+}
+.blogWrap {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.titleWrapBlog {
+  height: 413px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: url("../../img/titleW.jpeg");
+  justify-content: center;
+}
+.blogH1 {
+  font-family: var(--custom-font);
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+}
+.dataWrap {
+  width: 90%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+.articleWrap {
+  width: calc(366px - 50px);
+  min-height: calc(479px - 50px);
+  padding: 25px 25px 25px 25px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid var(--secondary-color);
+
+  margin-bottom: 50px;
+}
+.imageSt {
+  width: 314px;
+  height: auto;
+}
+.wraptimeDate {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.descH2 {
+  font-weight: 500;
+  font-family: var(--custom-font);
+  font-size: 25px;
+  color: var(--standart-color);
+  margin-bottom: 0;
+  text-decoration: none;
+}
+.descP {
+  font-size: 15px;
+  font-family: var(--custom-font);
+  color: var(--standart-color);
+}
+.timeD {
+  font-family: var(--custom-font);
+  font-size: 15px;
+  text-transform: uppercase;
+  color: var(--secondary-color);
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.faCalendarAlt {
+  margin-right: 8px;
+}
+.ulCatWr {
+  min-width: 100%;
+  padding: 0;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+}
+.listLi {
+  font-family: var(--custom-font);
+  color: var(--standart-color);
+  cursor: pointer;
+  font-size: 15px;
+
+  transition: color 0.6s ease;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-transform: uppercase;
+}
+.listLi:hover {
+  color: var(--secondary-color);
+}
+.buttonCategory {
+  width: auto;
+  height: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: var(--custom-font);
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background: var(--standart-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -153,12 +153,12 @@
 }
 .wrapSer {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 .wrapFir {
   width: calc(340px - 40px);
-  height: calc(340px - 40px);
+  min-height: calc(340px - 40px);
   padding: 20px 20px 20px 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -171,6 +171,11 @@
 }
 .wrapFir:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+}
+.wrapFir:nth-child(3),
+.wrapFir:nth-child(4) {
+  height: calc(390px - 40px) !important; /* Ваша нова висота */
+  transition: all 0.5s ease;
 }
 .number {
   font-family: var(--custom-font);

@@ -1,0 +1,158 @@
+:root {
+  --standart-color: #222222;
+  --secondary-color: #a3a3a5;
+  --red-color: #3e3092;
+  --colred-color: #f4223c;
+
+  --custom-font: Ubuntu;
+}
+
+.blagWrap {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.titleWrapBlog {
+  height: 413px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  overflow: hidden;
+}
+.blogH1 {
+  font-family: var(--custom-font);
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  z-index: 3;
+}
+.picBl {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: auto;
+}
+.divWrap {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+.picBlTh {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+.divWrap:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.wraptimeDate {
+  min-width: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+}
+.timeD {
+  font-family: var(--custom-font);
+  font-size: 15px;
+  text-transform: uppercase;
+  color: var(--secondary-color);
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.faCalendarAlt {
+  font-size: 11px;
+  margin-right: 8px;
+  margin-left: 10px;
+}
+.twoBlockWrap {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 120px;
+  margin-bottom: 50px;
+}
+.twoBWrapText {
+  width: 700px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-right: 50px;
+}
+.picInD {
+  width: calc(590px - 50px);
+  height: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.twoH2 {
+  font-family: var(--custom-font);
+  color: var(--standart-color);
+  font-size: 40px;
+  font-weight: 300;
+  margin-top: 0;
+}
+.twoP {
+  font-family: var(--custom-font);
+  color: var(--secondary-color);
+  font-size: 18px;
+}
+.threH3 {
+  font-family: var(--custom-font);
+  font-size: 30px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 3px;
+  z-index: 2;
+  margin-bottom: 0;
+}
+.threP {
+  font-family: var(--custom-font);
+  font-size: 25px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--secondary-color);
+  z-index: 2;
+}
+.theBut {
+  border: none;
+  background: #ffcc00;
+  z-index: 2;
+  color: var(--standart-color);
+  width: 140px;
+  height: 40px;
+  font-family: var(--custom-font);
+  font-size: 17px;
+  transition: background 0.5s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.theBut:hover {
+  background: white;
+}

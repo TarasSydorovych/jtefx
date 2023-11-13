@@ -3,7 +3,7 @@ import css from "./header.module.css";
 import { useEffect, useState } from "react";
 
 import Contact from "./contact";
-export default function Header() {
+export default function HeaderWhite() {
   const [openContact, setOpenContact] = useState(false);
   const [headerSticky, setHeaderSticky] = useState(false);
   const open = () => {
@@ -24,35 +24,35 @@ export default function Header() {
   };
   return (
     <header className={`${css.headerWrap} ${headerSticky ? css.sticky : ""}`}>
-      <Link className={css.logo} to="/">
-        <h1 className={css.logo}>
+      <Link className={css.logoWhite} to="/">
+        <h1 className={css.logoWhite}>
           JTEfx
-          <span className={css.spanLogo}>Job Traffic Employee</span>
+          <span className={css.spanLogoWhite}>Job Traffic Employee</span>
         </h1>
       </Link>
       <nav className={css.navStyle}>
         <ul className={css.navUl}>
-          <Link to="/" className={css.navLi}>
-            <li className={css.navLi}>Головна</li>
+          <Link to="/" className={css.navLiWhite}>
+            <li className={css.navLiWhite}>Головна</li>
           </Link>
-          <Link to="/blog" className={css.navLi}>
-            <li className={css.navLi}>Блог</li>
+          <Link to="/blog" className={css.navLiWhite}>
+            <li className={css.navLiWhite}>Блог</li>
           </Link>
-          <Link to="/" className={css.navLi}>
-            <li className={css.navLi}>Рекрутинг</li>
+          <Link to="/" className={css.navLiWhite}>
+            <li className={css.navLiWhite}>Рекрутинг</li>
           </Link>
-          <Link to="/" className={css.navLi}>
-            <li className={css.navLi}>Маркетинг</li>
+          <Link to="/" className={css.navLiWhite}>
+            <li className={css.navLiWhite}>Маркетинг</li>
           </Link>
-          <Link to="/" className={css.navLi}>
-            <li className={css.navLi}>Реєстрація</li>
+          <Link to="/" className={css.navLiWhite}>
+            <li className={css.navLiWhite}>Реєстрація</li>
           </Link>
         </ul>
       </nav>
       <div className={css.hamburgerWr} onClick={open}>
-        <span className={css.hambSpFirs}></span>
-        <span className={css.hambSpSecont}></span>
-        <span className={css.hambSpThre}></span>
+        <span className={css.hambSpFirsWhite}></span>
+        <span className={css.hambSpSecontWhite}></span>
+        <span className={css.hambSpThreWhite}></span>
       </div>
       {openContact && <Contact setOpenContact={setOpenContact} />}
     </header>

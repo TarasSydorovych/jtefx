@@ -33,20 +33,19 @@ export default function SecondBlock() {
       <animated.div style={fadeIn} className={css.wrapSer}>
         <animated.div style={fadeIn} className={css.wrapFir}>
           <p className={css.number}>1</p>
-          <p className={css.deckWak}>Для рекрутерів</p>
+          <p className={css.deckWak}>Для HR та рекрутерів</p>
           <p className={css.hpd}>
-            Зручний інструмент для пошуку, відбору та звітування про кандидатів.
-            Аналіз резюме, відстеження процесу найму та комунікація зі шукачами
-            роботи.
+            Зручний інструмент для пошуку активних кандидатів із релевантним
+            досвідом.
           </p>
           <p className={css.registerBU}>Реєстріція</p>
         </animated.div>
         <animated.div style={fadeOut} className={css.wrapFir}>
           <p className={css.number}>2</p>
-          <p className={css.deckWak}>Для шукачів роботи</p>
+          <p className={css.deckWak}>Для Шукачів Роботи</p>
           <p className={css.hpd}>
-            Персоналізований пошук вакансій, можливість вивчення ринку праці та
-            отримання порад щодо кар'єрного зростання.
+            Вивчення ринку праці та можливість обрати найкращу пропозицію для
+            себе серед тих, що пропонує ринок.
           </p>
           <p className={css.registerBU}>Реєстріція</p>
         </animated.div>
@@ -55,19 +54,21 @@ export default function SecondBlock() {
       <animated.div style={fadeIn} className={css.wrapSer}>
         <animated.div style={fadeIn} className={css.wrapFir}>
           <p className={css.number}>3</p>
-          <p className={css.deckWak}>Для менеджерів</p>
+          <p className={css.deckWak}>Для Brand Manager</p>
           <p className={css.hpd}>
-            Ефективне керування та аналіз трафіку, інструменти для таргетування
-            та оптимізації рекламних кампаній.
+            Ви зможете ефективно продати свій трафік ,шляхом виставлення своєї
+            пропозиції на нашій платформі серед Affiliate менеджерів(кожен зможе
+            написати відгук про якість трафіку)
           </p>
           <p className={css.registerBU}>Реєстріція</p>
         </animated.div>
         <animated.div style={fadeOut} className={css.wrapFir}>
           <p className={css.number}>4</p>
-          <p className={css.deckWak}>Для покупців трафіку</p>
+          <p className={css.deckWak}>Для Affiliate manager</p>
           <p className={css.hpd}>
-            Можливість точного таргетування аудиторії, аналіз результативності
-            та максимізація конверсій через покупку якісного трафіку.
+            Ви зможете легко знайти потрібний трафік з допомогою нашого сервісу
+            та переконатись у його якості перед купівлею, за відгуками
+            користувачів.
           </p>
           <p className={css.registerBU}>Реєстріція</p>
         </animated.div>

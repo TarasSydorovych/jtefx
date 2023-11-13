@@ -7,7 +7,10 @@ import { FiMail } from "react-icons/fi";
 export default function Footer() {
   return (
     <footer className={css.footerWrap}>
-      <h4 className={css.foterh4}>JTEFX</h4>
+      <h4 className={css.foterh4}>
+        JTEFX
+        <span className={css.spanLogo}>Job Traffic Employee</span>
+      </h4>
       <div className={css.iconWrap}>
         <div className={css.theIcon}>
           <FaViber className={css.faViber} />
