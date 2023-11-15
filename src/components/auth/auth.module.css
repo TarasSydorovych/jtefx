@@ -1,3 +1,93 @@
+:root {
+  --standart-color: #222222;
+  --secondary-color: #a3a3a5;
+  --red-color: #3e3092;
+  --colred-color: #f4223c;
+
+  --custom-font: Ubuntu;
+}
+
 .telegram {
   width: 100px;
+}
+.sectionAuthWrap {
+  margin-top: 100px;
+  width: 100%;
+  height: 460px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background: var(--standart-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.divAuthWrap {
+  width: 800px;
+  height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.divAuthWrapOut {
+  width: 800px;
+  height: 460px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.buttonWrapAuth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  height: 460px;
+}
+.button {
+  width: 380px;
+  height: 50px;
+  padding-left: 25px;
+  padding-right: 25px;
+  background: var(--standart-color);
+  font-family: var(--custom-font);
+  color: white;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  border: 1px solid white;
+  cursor: pointer;
+  margin-top: 40px;
+}
+.button:hover {
+  border: none;
+  background: white;
+  color: var(--standart-color);
+  margin-top: calc(40px + 2px);
+}
+.wrapTg {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 50px;
+}
+.h1Reg {
+  font-family: var(--custom-font);
+  color: white;
+  text-align: center;
+}
+.h1RegSpan {
+  font-family: var(--custom-font);
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.tga {
+  width: 66%;
+  display: flex;
+  align-self: center;
 }

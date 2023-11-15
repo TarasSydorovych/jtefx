@@ -1,0 +1,85 @@
+:root {
+  --standart-color: #222222;
+  --secondary-color: #a3a3a5;
+  --red-color: #3e3092;
+  --colred-color: #f4223c;
+
+  --custom-font: Ubuntu;
+}
+.wrapRecFrec {
+  margin-top: 100px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wrapSmallFrec {
+  width: 1000px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.h1MyAco {
+  font-family: var(--custom-font);
+  font-size: 30px;
+  color: var(--standart-color);
+}
+.linkToProfile {
+  font-family: var(--custom-font);
+  font-size: 20px;
+  text-decoration: none;
+}
+.ulList {
+  padding: 0;
+  height: auto;
+  list-style-type: none;
+  width: 100%;
+  border-bottom: 1px solid var(--secondary-color);
+  margin-bottom: 30px;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.liList {
+  margin-right: 40px;
+  font-family: var(--custom-font);
+  font-size: 25px;
+  color: var(--standart-color);
+  cursor: pointer;
+  transition: color 0.5s ease;
+}
+.liList:hover {
+  color: var(--secondary-color);
+}
+.activeTab {
+  border-bottom: 2px solid red;
+}
+.profileWrap {
+  width: 70%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.wrapSec {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.pPosada {
+  font-family: var(--custom-font);
+  font-size: 25px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+.inputSt {
+  width: 65%;
+  height: 50px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+}

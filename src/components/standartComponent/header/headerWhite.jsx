@@ -38,13 +38,13 @@ export default function HeaderWhite() {
           <Link to="/blog" className={css.navLiWhite}>
             <li className={css.navLiWhite}>Блог</li>
           </Link>
-          <Link to="/" className={css.navLiWhite}>
+          <Link to="/recruit" className={css.navLiWhite}>
             <li className={css.navLiWhite}>Рекрутинг</li>
           </Link>
           <Link to="/" className={css.navLiWhite}>
             <li className={css.navLiWhite}>Маркетинг</li>
           </Link>
-          <Link to="/" className={css.navLiWhite}>
+          <Link to="/auth" className={css.navLiWhite}>
             <li className={css.navLiWhite}>Реєстрація</li>
           </Link>
         </ul>

@@ -93,6 +93,15 @@
   width: 600px;
   padding: 0;
 }
+.navUlRec {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style-type: none;
+  height: auto;
+  width: 250px;
+  padding: 0;
+}
 .navLi {
   font-family: var(--custom-font);
   font-size: 12px;
@@ -101,6 +110,18 @@
   letter-spacing: 4px;
   text-decoration: none;
   cursor: pointer;
+}
+.navLiWr {
+  font-family: var(--custom-font);
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--standart-color);
+  letter-spacing: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .navLiWhite {
   font-family: var(--custom-font);
@@ -281,4 +302,43 @@
   align-items: center;
   justify-content: space-between;
   transition: opacity 0.3s ease, transform 0.5s ease;
+}
+.iconWrapRec {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+}
+.circul {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--secondary-color);
+  color: var(--standart-color);
+  font-family: var(--custom-font);
+  font-weight: 20px;
+  margin-left: 10px;
+}
+.circulImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+.online {
+  width: auto;
+  height: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  background: green;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }

@@ -7,15 +7,23 @@ import { Route, Routes } from "react-router-dom";
 import Blog from "./components/blog/blog";
 import BlogPage from "./components/blogPage/blogPage";
 import Auth from "./components/auth/auth";
-
+import { checkRegistration } from "./function/authUtils";
+import RecruitFrec from "./components/recruit/recruitForRec/recruitFrec";
+import RecruitFhr from "./components/recruit/recruitForHr/recruitFhr";
 function App() {
+  const { isRegistered, role } = checkRegistration();
   return (
     <>
       <Routes>
         <Route path="/" element={<Main />} />
+
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogPage />} />
-        <Route path="/tg" element={<Auth />} />
+        <Route path="/auth" element={<Auth />} />
+        {role === "hr" && <Route path="/recruit" element={<RecruitFhr />} />}
+        {role === "worker" && (
+          <Route path="/recruit" element={<RecruitFrec />} />
+        )}
       </Routes>
 
       <Footer />
