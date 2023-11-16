@@ -70,6 +70,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  margin-top: 40px;
 }
 .pPosada {
   font-family: var(--custom-font);
@@ -77,9 +78,88 @@
   margin-top: 10px;
   font-weight: bold;
 }
+.pPosadaSmall {
+  font-family: var(--custom-font);
+  font-size: 15px;
+  margin-top: 0px;
+  color: var(--secondary-color);
+  width: 190px;
+}
 .inputSt {
-  width: 65%;
+  width: calc(65% - 10px);
+  padding-left: 10px;
   height: 50px;
   border: 1px solid var(--secondary-color);
   border-radius: 5px;
+  font-family: var(--custom-font);
+  font-size: 20px;
+}
+.areaSt {
+  width: calc(65% - 10px);
+  padding-left: 10px;
+  height: 150px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  font-family: var(--custom-font);
+  font-size: 20px;
+}
+.inputStSelect {
+  width: calc(65% + 4px);
+  padding-left: 10px;
+  height: 50px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  font-family: var(--custom-font);
+  font-size: 20px;
+}
+.wrapCountWhi {
+  width: calc(65% + 4px);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.checkWrap {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.laberCheck {
+  margin-top: 10px;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.inputStSelectA {
+  width: calc(100%);
+  padding-left: 10px;
+  height: 50px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  font-family: var(--custom-font);
+  font-size: 20px;
+}
+.pWrapBig {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.checkP {
+  font-family: var(--custom-font);
+  color: var(--standart-color);
+  margin-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.checkWrapLevel {
+  width: calc(65% - 10px);
+
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }

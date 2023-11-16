@@ -130,6 +130,9 @@ const Auth = () => {
             ? "afilate"
             : null,
           imageUlr: "",
+          posada: "",
+          categoryP: "",
+          experience: "",
         });
 
         console.log("Document written with ID: ", docRef.id);

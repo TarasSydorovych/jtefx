@@ -10,6 +10,7 @@ import Auth from "./components/auth/auth";
 import { checkRegistration } from "./function/authUtils";
 import RecruitFrec from "./components/recruit/recruitForRec/recruitFrec";
 import RecruitFhr from "./components/recruit/recruitForHr/recruitFhr";
+import AddProfession from "./components/admin/addProf";
 function App() {
   const { isRegistered, role } = checkRegistration();
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogPage />} />
         <Route path="/auth" element={<Auth />} />
+        <Route path="/addw" element={<AddProfession />} />
         {role === "hr" && <Route path="/recruit" element={<RecruitFhr />} />}
         {role === "worker" && (
           <Route path="/recruit" element={<RecruitFrec />} />
