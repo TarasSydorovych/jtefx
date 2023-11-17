@@ -3,6 +3,16 @@ import css from "./recruitFrec.module.css";
 import withFirebaseCollection from "../../HOK/withFirebaseCollection";
 import { continents, countries, languages } from "countries-list";
 import {
+  getFirestore,
+  collection,
+  where,
+  getDocs,
+  doc,
+  updateDoc,
+  query,
+} from "firebase/firestore";
+import { db } from "../../../function/firebase";
+import {
   GetCountries,
   GetState,
   GetCity,
@@ -10,15 +20,19 @@ import {
 } from "react-country-state-city";
 
 import "react-country-state-city/dist/react-country-state-city.css";
+import LanguageInput from "./languageInput";
 
-const Profile = ({ data }) => {
+const Profile = ({ data, userId }) => {
   const [posada, setPosada] = useState("");
   const [napram, setNapram] = useState("");
   const [exp, steExp] = useState("");
   const [payment, setPayment] = useState("");
+  const [misto, setMisto] = useState("");
   const [countryC, setCountryC] = useState("");
   const allCountries = countries;
   const [areaExp, setAreaExp] = useState("");
+  const [selectedLanguages, setSelectedLanguages] = useState([]);
+  const [inputData, setInputData] = useState({ lang: "", level: "" });
   // Стани для другого варіанту
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
@@ -56,7 +70,7 @@ const Profile = ({ data }) => {
     "10 років",
     "більще 10 років",
   ];
-
+  console.log(languages);
   const handleNapramChange = (e) => {
     const selectedPosada = e.target.value;
 
@@ -89,6 +103,43 @@ const Profile = ({ data }) => {
     });
   }, []);
   useEffect(() => {}, [countryId]);
+  const updateUserDataInFirebase = async () => {
+    try {
+      const usersCollectionRef = collection(db, "users");
+      const q = query(usersCollectionRef, where("userId", "==", userId)); // Оновлено виклик query
+
+      const userDocs = await getDocs(q);
+
+      if (!userDocs.empty) {
+        // Знайдено користувача, оновіть його дані
+        const userDocRef = doc(db, "users", userDocs.docs[0].id);
+        await updateDoc(userDocRef, {
+          posada: posada,
+          categoryP: napram,
+          experience: exp,
+          paymantRel: payment,
+          country: countryId,
+          region: stateId,
+          city: misto,
+          canWork: isChecked1,
+          canRelocate: isChecked2,
+          canRelocateCantry: isChecked2,
+          englishLevel: "",
+          workExp: areaExp,
+          achievement: achievement,
+          expectation: expectation,
+          hourPayment: hourPrice,
+          quesForHr: questionForE,
+          language: selectedLanguages,
+        });
+        console.log("Дані користувача успішно оновлені.");
+      } else {
+        console.log("Користувача з заданим userId не знайдено.");
+      }
+    } catch (error) {
+      console.error("Помилка при оновленні даних користувача:", error);
+    }
+  };
   return (
     <section className={css.profileWrap}>
       <div className={css.wrapSec}>
@@ -221,6 +272,11 @@ const Profile = ({ data }) => {
             onChange={(e) => {
               const selectedCity = cityList[e.target.value];
               setCityId(selectedCity.id);
+              setMisto(
+                cityList.findIndex((item) => item.id === cityId) !== -1
+                  ? cityList.findIndex((item) => item.id === cityId)
+                  : ""
+              );
             }}
             value={
               cityList.findIndex((item) => item.id === cityId) !== -1
@@ -405,6 +461,19 @@ const Profile = ({ data }) => {
           onChange={(e) => setQuestionForE(e.target.value)}
         />
       </div>
+      <div className={css.wrapSec}>
+        <p className={css.pPosada}>Мови та рівень володіння</p>
+        <LanguageInput
+          languageData={languages}
+          selectedLanguages={selectedLanguages}
+          setSelectedLanguages={setSelectedLanguages}
+          inputData={inputData}
+          setInputData={setInputData}
+        />
+      </div>
+      <button onClick={updateUserDataInFirebase} className={css.addAllData}>
+        Записати
+      </button>
     </section>
   );
 };

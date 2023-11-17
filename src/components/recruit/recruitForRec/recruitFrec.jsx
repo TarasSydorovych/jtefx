@@ -57,7 +57,7 @@ const RecruitFrec = ({ data }) => {
               Контакти
             </li>
           </ul>
-          {prof && <Profile />}
+          {prof && <Profile userId={userId} />}
         </div>
       </section>
     </>

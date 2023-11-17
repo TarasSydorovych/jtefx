@@ -133,6 +133,20 @@ const Auth = () => {
           posada: "",
           categoryP: "",
           experience: "",
+          paymantRel: "",
+          country: "",
+          region: "",
+          city: "",
+          canWork: "",
+          canRelocate: "",
+          canRelocateCantry: "",
+          englishLevel: "",
+          workExp: "",
+          achievement: "",
+          expectation: "",
+          hourPayment: "",
+          quesForHr: "",
+          language: [],
         });
 
         console.log("Document written with ID: ", docRef.id);
