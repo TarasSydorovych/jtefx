@@ -22,10 +22,11 @@ import {
 import "react-country-state-city/dist/react-country-state-city.css";
 import LanguageInput from "./languageInput";
 
-const Profile = ({ data, userId }) => {
+const Profile = ({ data, userId, currentUser }) => {
+  console.log(currentUser);
   const [posada, setPosada] = useState("");
   const [napram, setNapram] = useState("");
-  const [exp, steExp] = useState("");
+  const [exp, setExp] = useState("");
   const [payment, setPayment] = useState("");
   const [misto, setMisto] = useState("");
   const [countryC, setCountryC] = useState("");
@@ -70,7 +71,7 @@ const Profile = ({ data, userId }) => {
     "10 років",
     "більще 10 років",
   ];
-  console.log(languages);
+
   const handleNapramChange = (e) => {
     const selectedPosada = e.target.value;
 
@@ -79,7 +80,7 @@ const Profile = ({ data, userId }) => {
   const handleExpChange = (e) => {
     const selectedPosada = e.target.value;
 
-    steExp(selectedPosada);
+    setExp(selectedPosada);
   };
 
   //
@@ -132,14 +133,27 @@ const Profile = ({ data, userId }) => {
           quesForHr: questionForE,
           language: selectedLanguages,
         });
-        console.log("Дані користувача успішно оновлені.");
       } else {
-        console.log("Користувача з заданим userId не знайдено.");
       }
     } catch (error) {
       console.error("Помилка при оновленні даних користувача:", error);
     }
   };
+  useEffect(() => {
+    setPosada(currentUser.posada);
+    setNapram(currentUser.categoryP);
+    setExp(currentUser.experience);
+    setPayment(currentUser.paymantRel);
+    setCountryId(currentUser.country);
+    setStateId(currentUser.region);
+    setMisto(currentUser.city);
+    setAreaExp(currentUser.workExp);
+    setAchievement(currentUser.achievement);
+    setExpectation(currentUser.expectation);
+    setHourPrice(currentUser.hourPayment);
+    setQuestionForE(currentUser.quesForHr);
+    setSelectedLanguages(currentUser.language);
+  }, [currentUser]);
   return (
     <section className={css.profileWrap}>
       <div className={css.wrapSec}>

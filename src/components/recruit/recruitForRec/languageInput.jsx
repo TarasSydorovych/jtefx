@@ -7,9 +7,6 @@ const LanguageInput = ({
   inputData,
   setInputData,
 }) => {
-  console.log("selectedLanguages", selectedLanguages);
-
-  console.log("inputData", inputData);
   const handleLanguageChange = (event) => {
     const inputText = event.target.value.toLowerCase();
     const filteredLanguages = Object.keys(languageData)
