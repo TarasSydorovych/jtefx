@@ -23,13 +23,12 @@ import "react-country-state-city/dist/react-country-state-city.css";
 import LanguageInput from "./languageInput";
 
 const Profile = ({ data, userId, currentUser }) => {
-  console.log(currentUser);
   const [posada, setPosada] = useState("");
   const [napram, setNapram] = useState("");
   const [exp, setExp] = useState("");
   const [payment, setPayment] = useState("");
   const [misto, setMisto] = useState("");
-  const [countryC, setCountryC] = useState("");
+  const [cityFotrBase, setCityFotrBase] = useState("");
   const allCountries = countries;
   const [areaExp, setAreaExp] = useState("");
   const [selectedLanguages, setSelectedLanguages] = useState([]);
@@ -119,8 +118,8 @@ const Profile = ({ data, userId, currentUser }) => {
           categoryP: napram,
           experience: exp,
           paymantRel: payment,
-          country: countryId,
-          region: stateId,
+          country: { countryId: countryId, theId: theId },
+          region: { cityFotrBase: cityFotrBase, stateId: stateId },
           city: misto,
           canWork: isChecked1,
           canRelocate: isChecked2,
@@ -133,6 +132,8 @@ const Profile = ({ data, userId, currentUser }) => {
           quesForHr: questionForE,
           language: selectedLanguages,
         });
+        alert("Зміни успішно додані");
+        window.location.reload();
       } else {
       }
     } catch (error) {
@@ -140,19 +141,37 @@ const Profile = ({ data, userId, currentUser }) => {
     }
   };
   useEffect(() => {
-    setPosada(currentUser.posada);
-    setNapram(currentUser.categoryP);
-    setExp(currentUser.experience);
-    setPayment(currentUser.paymantRel);
-    setCountryId(currentUser.country);
-    setStateId(currentUser.region);
-    setMisto(currentUser.city);
-    setAreaExp(currentUser.workExp);
-    setAchievement(currentUser.achievement);
-    setExpectation(currentUser.expectation);
-    setHourPrice(currentUser.hourPayment);
-    setQuestionForE(currentUser.quesForHr);
-    setSelectedLanguages(currentUser.language);
+    if (currentUser) {
+      setPosada(currentUser.posada);
+      setNapram(currentUser.categoryP);
+      setExp(currentUser.experience);
+      setPayment(currentUser.paymantRel);
+      setCountryId(currentUser.country.countryId);
+
+      setCityFotrBase(currentUser.region.cityFotrBase);
+      setMisto(currentUser.city);
+      setIsChecked1(currentUser.canWork);
+      setIsChecked2(currentUser.canRelocate);
+      setIsChecked3(currentUser.canRelocateCantry);
+      setAreaExp(currentUser.workExp);
+      setAchievement(currentUser.achievement);
+      setExpectation(currentUser.expectation);
+      setHourPrice(currentUser.hourPayment);
+      setQuestionForE(currentUser.quesForHr);
+      setSelectedLanguages(currentUser.language);
+    }
+  }, [currentUser]);
+  useEffect(() => {
+    if (currentUser) {
+      GetState(currentUser.country.theId).then((result) => {
+        setStateList(result);
+      });
+      GetCity(currentUser.country.theId, currentUser.region.stateId).then(
+        (result) => {
+          setCityList(result);
+        }
+      );
+    }
   }, [currentUser]);
   return (
     <section className={css.profileWrap}>
@@ -254,14 +273,15 @@ const Profile = ({ data, userId, currentUser }) => {
           onChange={(e) => {
             const selectedState = stateList[e.target.value];
             setStateId(selectedState.id);
+            setCityFotrBase(selectedState.name);
 
             GetCity(theId, selectedState.id).then((result) => {
               setCityList(result);
             });
           }}
           value={
-            stateList.findIndex((item) => item.id === stateId) !== -1
-              ? stateList.findIndex((item) => item.id === stateId)
+            stateList.findIndex((item) => item.name === cityFotrBase) !== -1
+              ? stateList.findIndex((item) => item.name === cityFotrBase)
               : ""
           }
         >
@@ -286,15 +306,11 @@ const Profile = ({ data, userId, currentUser }) => {
             onChange={(e) => {
               const selectedCity = cityList[e.target.value];
               setCityId(selectedCity.id);
-              setMisto(
-                cityList.findIndex((item) => item.id === cityId) !== -1
-                  ? cityList.findIndex((item) => item.id === cityId)
-                  : ""
-              );
+              setMisto(selectedCity.name);
             }}
             value={
-              cityList.findIndex((item) => item.id === cityId) !== -1
-                ? cityList.findIndex((item) => item.id === cityId)
+              cityList.findIndex((item) => item.name === misto) !== -1
+                ? cityList.findIndex((item) => item.name === misto)
                 : ""
             }
           >
@@ -342,77 +358,7 @@ const Profile = ({ data, userId, currentUser }) => {
           </div>
         </div>
       </div>
-      <div className={css.wrapSec}>
-        <p className={css.pPosada}>Рівень англійської</p>
-        <div className={css.checkWrapLevel}>
-          {/* Перший варіант */}
-          <label className={css.laberCheck}>
-            <input
-              className={css.checkBoxStyle}
-              type="radio"
-              name="englishLevel"
-              checked={isChecked11}
-              onChange={() => setIsChecked11(!isChecked11)}
-            />
-            <p className={css.checkP}>No English</p>
-          </label>
 
-          {/* Другий варіант */}
-          <label className={css.laberCheck}>
-            <input
-              type="radio"
-              name="englishLevel"
-              checked={isChecked22}
-              onChange={() => setIsChecked22(!isChecked22)}
-            />
-            <p className={css.checkP}>Beginner/Elementary</p>
-          </label>
-
-          {/* Третій варіант */}
-          <label className={css.laberCheck}>
-            <input
-              type="radio"
-              name="englishLevel"
-              checked={isChecked33}
-              onChange={() => setIsChecked33(!isChecked33)}
-            />
-            <p className={css.checkP}>Pre-Intermediate</p>
-          </label>
-
-          <label className={css.laberCheck}>
-            <input
-              className={css.checkBoxStyle}
-              type="radio"
-              name="englishLevel"
-              checked={isChecked44}
-              onChange={() => setIsChecked44(!isChecked44)}
-            />
-            <p className={css.checkP}>Intermediate</p>
-          </label>
-
-          <label className={css.laberCheck}>
-            <input
-              className={css.checkBoxStyle}
-              type="radio"
-              name="englishLevel"
-              checked={isChecked55}
-              onChange={() => setIsChecked55(!isChecked55)}
-            />
-            <p className={css.checkP}>Upper-Intermediate</p>
-          </label>
-
-          <label className={css.laberCheck}>
-            <input
-              className={css.checkBoxStyle}
-              type="radio"
-              name="englishLevel"
-              checked={isChecked66}
-              onChange={() => setIsChecked66(!isChecked66)}
-            />
-            <p className={css.checkP}>Advanced/Fluent</p>
-          </label>
-        </div>
-      </div>
       <div className={css.wrapSec}>
         <div className={css.pWrapBig}>
           <p className={css.pPosada}>Досвід роботи</p>

@@ -11,6 +11,7 @@ import { checkRegistration } from "./function/authUtils";
 import RecruitFrec from "./components/recruit/recruitForRec/recruitFrec";
 import RecruitFhr from "./components/recruit/recruitForHr/recruitFhr";
 import AddProfession from "./components/admin/addProf";
+import WorkerPage from "./components/workerPage/workerPage";
 function App() {
   const { isRegistered, role } = checkRegistration();
   return (
@@ -25,6 +26,9 @@ function App() {
         {role === "hr" && <Route path="/recruit" element={<RecruitFhr />} />}
         {role === "worker" && (
           <Route path="/recruit" element={<RecruitFrec />} />
+        )}
+        {role === "worker" && (
+          <Route path="/recruit/my/:id" element={<WorkerPage />} />
         )}
       </Routes>
 
