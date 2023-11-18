@@ -6,3 +6,132 @@
 
   --custom-font: Ubuntu;
 }
+.anketaWrap {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px;
+}
+.smallWrap {
+  width: 1000px;
+  height: auto;
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.anotherWrap {
+  width: 700px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.mainVac {
+  font-family: var(--custom-font);
+  color: var(--standart-color);
+  font-size: 30px;
+}
+.descGre {
+  font-size: 18px;
+  font-family: var(--custom-font);
+  color: green;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.descGreSpan {
+  color: var(--standart-color);
+  font-size: 20px;
+  font-weight: bold;
+}
+.allPdesc {
+  font-family: var(--custom-font);
+  font-size: 20px;
+  color: var(--standart-color);
+  font-weight: bold;
+}
+.pAllDesc {
+  font-family: var(--custom-font);
+  font-size: 18px;
+  width: 600px;
+}
+.languageUl {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: auto;
+  margin-top: 0;
+  height: auto;
+}
+.languageLi {
+  font-family: var(--custom-font);
+  font-size: 18px;
+  margin-top: 5px;
+}
+.wrapSmExp {
+  width: 259px;
+  height: auto;
+
+  border-radius: 5px;
+  border: 1px solid var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.firstPVal {
+  padding-bottom: 15px;
+  font-family: var(--custom-font);
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: green;
+  border-bottom: 1px solid var(--secondary-color);
+  width: calc(100% - 20px);
+  padding-left: 20px;
+}
+.restInfoWrap {
+  padding: 0 20px 20px 20px;
+  width: calc(100% - 40px);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.informTr {
+  font-family: var(--custom-font);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--standart-color);
+  margin-top: 0;
+  width: auto;
+  height: auto;
+}
+.informTrd {
+  font-family: var(--custom-font);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  color: var(--standart-color);
+  margin-top: 0;
+  width: auto;
+  height: auto;
+}
+.informTrLand {
+  font-family: var(--custom-font);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--standart-color);
+  margin-top: 0;
+  width: auto;
+  height: auto;
+}
+.faEarthAsia {
+  margin-right: 7px;
+}
