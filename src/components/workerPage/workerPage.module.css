@@ -73,7 +73,7 @@
   margin-top: 5px;
 }
 .wrapSmExp {
-  width: 259px;
+  width: 300px;
   height: auto;
 
   border-radius: 5px;
@@ -125,7 +125,7 @@
   font-family: var(--custom-font);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   color: var(--standart-color);
   margin-top: 0;
@@ -133,5 +133,11 @@
   height: auto;
 }
 .faEarthAsia {
-  margin-right: 7px;
+  margin-right: 10px;
+  font-size: 20px;
+}
+.languageWrapWt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

@@ -6,6 +6,7 @@ import css from "./workerPage.module.css";
 import { FaEarthAsia } from "react-icons/fa6";
 import { PiLightningFill } from "react-icons/pi";
 import { FaLanguage } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 
 const WorkerPage = ({ data }) => {
   const { id } = useParams();
@@ -62,10 +63,32 @@ const WorkerPage = ({ data }) => {
                   <FaLanguage className={css.faEarthAsia} />
                   <div className={css.informTrLand}>
                     {userData.language.map((el, index) => {
-                      return <div key={index}>{el.lang}</div>;
+                      return (
+                        <div className={css.languageWrapWt} key={index}>
+                          {el.lang}: {el.level}
+                        </div>
+                      );
                     })}
                   </div>
                 </p>
+                {userData.canWork && (
+                  <p className={css.informTr}>
+                    <FaCheck className={css.faEarthAsia} />
+                    Віддалена робота
+                  </p>
+                )}
+                {userData.canRelocate && (
+                  <p className={css.informTr}>
+                    <FaCheck className={css.faEarthAsia} />
+                    Може виїхати за потреби
+                  </p>
+                )}
+                {userData.canRelocateCantry && (
+                  <p className={css.informTr}>
+                    <FaCheck className={css.faEarthAsia} />
+                    Розглядає переїзд в іншу країну
+                  </p>
+                )}
               </div>
             </div>
           </div>
