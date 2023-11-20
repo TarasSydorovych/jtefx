@@ -102,6 +102,15 @@
   width: 250px;
   padding: 0;
 }
+.navUlHr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style-type: none;
+  height: auto;
+  width: 400px;
+  padding: 0;
+}
 .navLi {
   font-family: var(--custom-font);
   font-size: 12px;

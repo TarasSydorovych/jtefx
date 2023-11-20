@@ -147,6 +147,8 @@ const Auth = () => {
           hourPayment: "",
           quesForHr: "",
           language: [],
+          phone: "",
+          mail: "",
         });
 
         console.log("Document written with ID: ", docRef.id);

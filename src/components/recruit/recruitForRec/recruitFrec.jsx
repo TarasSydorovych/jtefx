@@ -6,6 +6,7 @@ import { checkRegistration } from "../../../function/authUtils";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Profile from "./profile";
+import ContactInfoUs from "./contactInfoUs";
 const RecruitFrec = ({ data }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const { firstName, userId } = checkRegistration();
@@ -58,6 +59,9 @@ const RecruitFrec = ({ data }) => {
             </li>
           </ul>
           {prof && <Profile userId={userId} currentUser={currentUser} />}
+          {contact && (
+            <ContactInfoUs userId={userId} currentUser={currentUser} />
+          )}
         </div>
       </section>
     </>

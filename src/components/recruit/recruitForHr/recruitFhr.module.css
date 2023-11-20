@@ -1,0 +1,120 @@
+:root {
+  --standart-color: #222222;
+  --secondary-color: #a3a3a5;
+  --red-color: #3e3092;
+  --colred-color: #f4223c;
+
+  --custom-font: Ubuntu;
+}
+.wrapAddVac {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+.profileWrap {
+  width: 70%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.wrapSec {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+.pPosada {
+  font-family: var(--custom-font);
+  font-size: 25px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+.inputSt {
+  width: calc(65% - 10px);
+  padding-left: 10px;
+  height: 50px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  font-family: var(--custom-font);
+  font-size: 20px;
+}
+.inputStSelect {
+  width: calc(65% + 4px);
+  padding-left: 10px;
+  height: 50px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  font-family: var(--custom-font);
+  font-size: 20px;
+}
+
+.wrapCountWhi {
+  width: calc(65% + 4px);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.inputStSelectA {
+  width: calc(100%);
+  padding-left: 10px;
+  height: 50px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  font-family: var(--custom-font);
+  font-size: 20px;
+}
+.checkWrap {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.laberCheck {
+  margin-top: 10px;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pPosadaSmall {
+  font-family: var(--custom-font);
+  font-size: 15px;
+  margin-top: 0px;
+  color: var(--secondary-color);
+  width: 190px;
+}
+.areaSt {
+  width: calc(65% - 10px);
+  padding-left: 10px;
+  height: 150px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  font-family: var(--custom-font);
+  font-size: 20px;
+}
+.addAllData {
+  align-self: center;
+  width: 150px;
+  height: 40px;
+  border: none;
+  background: var(--standart-color);
+  color: white;
+  font-family: var(--custom-font);
+  font-size: 18px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.h1AddV {
+  font-family: var(--custom-font);
+  color: var(--standart-color);
+  margin-top: 50px;
+}
