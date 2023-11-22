@@ -71,6 +71,7 @@ const Auth = () => {
   };
 
   const handleTelegramResponse = async (response) => {
+    console.log("існує", response);
     try {
       // Перевірка, чи існує користувач з вказаним userId
       const querySnapshot = await getDocs(
@@ -111,11 +112,23 @@ const Auth = () => {
           })
         );
       } else {
+        let firstName = "";
+        let userName = "";
+        let userId = "";
+        if (response.first_name) {
+          firstName = response.first_name;
+        }
+        if (response.username) {
+          userName = response.username;
+        }
+        if (response.id) {
+          userId = response.id;
+        }
         // Якщо користувач не існує, додати його до колекції
         const docRef = await addDoc(collection(db, "users"), {
-          firstName: response.first_name,
-          username: response.username,
-          userId: response.id,
+          firstName: firstName,
+          username: userName,
+          userId: userId,
           balance: "0",
           inBlock: "false",
           role: hr

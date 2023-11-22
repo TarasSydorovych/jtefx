@@ -16,6 +16,7 @@ import AddVac from "./components/recruit/recruitForHr/addVac";
 import Vacancy from "./components/recruit/vacancy/vacancy";
 import Candidate from "./components/recruit/recruitForHr/candidate";
 import AllVacancy from "./components/recruit/allVacancy/allVacancy";
+import Chat from "./components/chat/chat";
 function App() {
   const { isRegistered, role, userId } = checkRegistration();
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/blog/:id" element={<BlogPage />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/addw" element={<AddProfession />} />
+        <Route path="/chat/:id" element={<Chat />} />
         {role === "hr" && <Route path="/recruit/add" element={<AddVac />} />}
         {role === "hr" && <Route path="/recruit" element={<RecruitFhr />} />}
         {role === "hr" && <Route path="/candidate" element={<Candidate />} />}
