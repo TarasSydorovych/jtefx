@@ -99,7 +99,7 @@
   justify-content: space-between;
   list-style-type: none;
   height: auto;
-  width: 250px;
+  width: 400px;
   padding: 0;
 }
 .navUlHr {
@@ -108,7 +108,7 @@
   justify-content: space-between;
   list-style-type: none;
   height: auto;
-  width: 400px;
+  width: 600px;
   padding: 0;
 }
 .navLi {

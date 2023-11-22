@@ -36,11 +36,14 @@ export default function HeaderForHr({ currentUser }) {
           <Link to="/" className={css.navLi}>
             <li className={css.navLi}>Головна</li>
           </Link>
-          <Link to="/blog" className={css.navLi}>
-            <li className={css.navLi}>Вакансії</li>
+          <Link to="/recruit" className={css.navLi}>
+            <li className={css.navLi}>Мої вакансії</li>
           </Link>
           <Link to="/recruit/add" className={css.navLi}>
             <li className={css.navLi}>Додати вакансію</li>
+          </Link>
+          <Link to="/candidate" className={css.navLi}>
+            <li className={css.navLi}>Кандидати</li>
           </Link>
         </ul>
       </nav>

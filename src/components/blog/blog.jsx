@@ -17,7 +17,7 @@ const Blog = ({ data }) => {
     const filteredArticles = data.filter((el) => el.category === category);
     setFilteredData(filteredArticles);
   }, [category, data]);
-  console.log(data);
+
   return (
     <>
       <HeaderWhite />

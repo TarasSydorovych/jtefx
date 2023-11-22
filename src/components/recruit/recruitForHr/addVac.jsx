@@ -3,24 +3,17 @@ import HeaderForHr from "../../standartComponent/header/headerForHr";
 import css from "./recruitFhr.module.css";
 import { useEffect, useState } from "react";
 import { checkRegistration } from "../../../function/authUtils";
+import { v4 as uuidv4 } from "uuid";
 import {
   GetCountries,
   GetState,
   GetCity,
   GetLanguages, //async functions
 } from "react-country-state-city";
-import {
-  getFirestore,
-  collection,
-  where,
-  getDocs,
-  doc,
-  addDoc,
-  updateDoc,
-  query,
-} from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 import { db } from "../../../function/firebase";
 const AddVac = ({ data }) => {
+  const uid = uuidv4();
   const { firstName, userId } = checkRegistration();
   const [currentUser, setCurrentUser] = useState(null);
   const [stateList, setStateList] = useState([]);
@@ -32,7 +25,7 @@ const AddVac = ({ data }) => {
   const [misto, setMisto] = useState("");
   const [countryList, setCountryList] = useState([]);
   const [countryId, setCountryId] = useState("");
-
+  const [languageList, setLanguageList] = useState([]);
   const [achievement, setAchievement] = useState("");
 
   const [isChecked1, setIsChecked1] = useState(false);
@@ -43,6 +36,7 @@ const AddVac = ({ data }) => {
   const [professionsData, setProfessionsData] = useState([]);
   const [exp, setExp] = useState("");
   const [napram, setNapram] = useState("");
+  const [coddingAch, setCoddingAch] = useState("");
   const handleExpChange = (e) => {
     const selectedPosada = e.target.value;
 
@@ -96,11 +90,14 @@ const AddVac = ({ data }) => {
     setNapram(selectedPosada);
   };
   const updateUserDataInFirebase = async () => {
+    const encodedQuestionForE = encodeURIComponent(questionForE);
+
     try {
       const vacanciesCollection = collection(db, "vacancies");
 
       // Створення об'єкта з даними для додавання до колекції
       const vacancyData = {
+        uid,
         userId,
         posada,
         napram,
@@ -111,8 +108,8 @@ const AddVac = ({ data }) => {
         isChecked1,
         isChecked2,
         isChecked3,
-        achievement,
-        questionForE,
+        achievement: coddingAch,
+        questionForE: encodedQuestionForE,
         // Додайте інші поля за необхідності
       };
 
@@ -142,6 +139,20 @@ const AddVac = ({ data }) => {
       );
     }
   }, [currentUser]);
+  const codingCom = (e) => {
+    const encodedQuestionForE = encodeURIComponent(e.target.value);
+    setCoddingAch(encodedQuestionForE);
+    setAchievement(e.target.value);
+  };
+  useEffect(() => {
+    GetCountries().then((result) => {
+      setCountryList(result);
+    });
+
+    GetLanguages().then((result) => {
+      setLanguageList(result);
+    });
+  }, []);
   return (
     <>
       {currentUser && <HeaderForHr currentUser={currentUser} />}
@@ -298,9 +309,7 @@ const AddVac = ({ data }) => {
                     checked={isChecked1}
                     onChange={() => setIsChecked1(!isChecked1)}
                   />
-                  <p className={css.checkP}>
-                    Може працювати та бути на зв'язку
-                  </p>
+                  <p className={css.checkP}>Тільки офіс</p>
                 </label>
 
                 {/* Другий варіант */}
@@ -320,7 +329,7 @@ const AddVac = ({ data }) => {
                     checked={isChecked3}
                     onChange={() => setIsChecked3(!isChecked3)}
                   />
-                  <p className={css.checkP}>За потреби переїзд в іншу країну</p>
+                  <p className={css.checkP}>Тільки віддалено</p>
                 </label>
               </div>
             </div>
@@ -335,7 +344,7 @@ const AddVac = ({ data }) => {
             <textarea
               className={css.areaSt}
               value={achievement}
-              onChange={(e) => setAchievement(e.target.value)}
+              onChange={codingCom}
             />
           </div>
           <div className={css.wrapSec}>

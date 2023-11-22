@@ -147,8 +147,9 @@ const Profile = ({ data, userId, currentUser }) => {
       setExp(currentUser.experience);
       setPayment(currentUser.paymantRel);
       setCountryId(currentUser.country.countryId);
-
+      setTheId(currentUser.country.theId);
       setCityFotrBase(currentUser.region.cityFotrBase);
+      setStateId(currentUser.region.stateId);
       setMisto(currentUser.city);
       setIsChecked1(currentUser.canWork);
       setIsChecked2(currentUser.canRelocate);

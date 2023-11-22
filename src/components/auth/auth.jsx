@@ -71,8 +71,6 @@ const Auth = () => {
   };
 
   const handleTelegramResponse = async (response) => {
-    console.log(response);
-
     try {
       // Перевірка, чи існує користувач з вказаним userId
       const querySnapshot = await getDocs(
@@ -150,8 +148,6 @@ const Auth = () => {
           phone: "",
           mail: "",
         });
-
-        console.log("Document written with ID: ", docRef.id);
 
         // Зберегти інформацію в localStorage
       }

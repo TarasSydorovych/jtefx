@@ -15,7 +15,7 @@ const WorkerPage = ({ data }) => {
   useEffect(() => {
     // Знаходимо користувача в масиві за його id
     const user = data.find((user) => user.userId === numericId);
-    console.log(user);
+
     // Якщо знайдено, встановлюємо дані в стан
     if (user) {
       setUserData(user);

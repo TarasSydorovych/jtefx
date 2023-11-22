@@ -13,8 +13,11 @@ import RecruitFhr from "./components/recruit/recruitForHr/recruitFhr";
 import AddProfession from "./components/admin/addProf";
 import WorkerPage from "./components/workerPage/workerPage";
 import AddVac from "./components/recruit/recruitForHr/addVac";
+import Vacancy from "./components/recruit/vacancy/vacancy";
+import Candidate from "./components/recruit/recruitForHr/candidate";
+import AllVacancy from "./components/recruit/allVacancy/allVacancy";
 function App() {
-  const { isRegistered, role } = checkRegistration();
+  const { isRegistered, role, userId } = checkRegistration();
   return (
     <>
       <Routes>
@@ -26,12 +29,16 @@ function App() {
         <Route path="/addw" element={<AddProfession />} />
         {role === "hr" && <Route path="/recruit/add" element={<AddVac />} />}
         {role === "hr" && <Route path="/recruit" element={<RecruitFhr />} />}
+        {role === "hr" && <Route path="/candidate" element={<Candidate />} />}
+        {<Route path="/candidate/:id" element={<WorkerPage />} />}
         {role === "worker" && (
           <Route path="/recruit" element={<RecruitFrec />} />
         )}
         {role === "worker" && (
           <Route path="/recruit/my/:id" element={<WorkerPage />} />
         )}
+        <Route path="/vacancy/:id" element={<Vacancy />} />
+        <Route path="/vacancy" element={<AllVacancy userId={userId} />} />
       </Routes>
 
       <Footer />

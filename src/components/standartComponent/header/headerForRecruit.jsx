@@ -36,8 +36,11 @@ export default function HeaderForRecruit({ currentUser }) {
           <Link to="/" className={css.navLi}>
             <li className={css.navLi}>Головна</li>
           </Link>
-          <Link to="/blog" className={css.navLi}>
+          <Link to="/vacancy" className={css.navLi}>
             <li className={css.navLi}>Вакансії</li>
+          </Link>
+          <Link to="/recruit" className={css.navLi}>
+            <li className={css.navLi}>Мій профіль</li>
           </Link>
         </ul>
       </nav>
