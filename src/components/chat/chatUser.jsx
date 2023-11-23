@@ -6,7 +6,13 @@ import {
   orderBy,
   limit,
   onSnapshot,
+  doc,
+  where,
+  getDocs,
+  updateDoc,
 } from "firebase/firestore";
+import { isEmpty } from "lodash";
+
 import {
   getStorage,
   ref,
@@ -22,7 +28,25 @@ const ChatUser = ({ userId, id, currentUser, chatUser }) => {
   const [message, setMessage] = useState("");
   const [file, setFile] = useState(null);
   const scrollRef = useRef(null);
+  // Функція для аналізу тексту та виявлення телефонних номерів
+  const findPhoneNumbers = (text) => {
+    const phoneRegex = /\b\d{10}\b|\b\d{3}[-.\s]?\d{3}[-.\s]?\d{4}\b/g;
+    const matches = text.match(phoneRegex);
+    return matches || [];
+  };
 
+  // Функція для аналізу тексту та виявлення електронних адрес
+  const findEmails = (text) => {
+    const emailRegex = /\S+@\S+\.\S+/g;
+    const matches = text.match(emailRegex);
+    return matches || [];
+  };
+
+  // Функція для аналізу тексту та виявлення ключових слів
+  const findKeywords = (text, keywords) => {
+    const lowercasedText = text.toLowerCase();
+    return keywords.filter((keyword) => lowercasedText.includes(keyword));
+  };
   useEffect(() => {
     const fetchMessages = async () => {
       const chatId = [userId, id].sort().join("_");
@@ -36,6 +60,7 @@ const ChatUser = ({ userId, id, currentUser, chatUser }) => {
         querySnapshot.forEach((doc) => {
           fetchedMessages.push({ ...doc.data(), id: doc.id });
         });
+        console.log(querySnapshot);
         setMessages(fetchedMessages);
         scrollRef.current.scrollIntoView({ behavior: "smooth" });
       });
@@ -57,23 +82,64 @@ const ChatUser = ({ userId, id, currentUser, chatUser }) => {
     }
 
     const chatId = [userId, id].sort().join("_");
+    const chatRoomQuery = query(
+      collection(db, "chatRoom"),
+      where("chatId", "==", chatId)
+    );
+    const chatRoomQuerySnapshot = await getDocs(chatRoomQuery);
 
-    // Handle file upload
-    let downloadURL = "";
-    if (file) {
-      const storageRef = ref(storage, file.name);
-      const uploadTask = uploadBytesResumable(storageRef, file);
+    if (isEmpty(chatRoomQuerySnapshot.docs)) {
+      // Якщо документ не існує, то додайте його до колекції
+      await addDoc(collection(db, "chatRoom"), { userId, id, chatId });
+    }
+    // Аналіз тексту перед відправкою
+    const phoneNumbers = findPhoneNumbers(message);
+    const emails = findEmails(message);
+    const keywords = findKeywords(message, [
+      "телеграм",
+      "тг",
+      "tg",
+      "telegram",
+    ]);
+
+    if (phoneNumbers.length > 0 || emails.length > 0 || keywords.length > 0) {
+      // Виявлено контактні дані або ключові слова, реагувати за власним вибором
+      alert(
+        "Попередження: Ви використовуєте контактні дані або ключові слова."
+      );
 
       try {
-        await uploadTask;
-        downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+        // Отримайте посилання на користувача
+        const usersCollectionRef = collection(db, "users");
+        const userQuery = query(
+          usersCollectionRef,
+          where("userId", "==", userId)
+        );
+        const userQuerySnapshot = await getDocs(userQuery);
+
+        if (!isEmpty(userQuerySnapshot.docs)) {
+          const userDocRef = userQuerySnapshot.docs[0].ref;
+
+          // Оновіть поле varning користувача
+          const newWarning = {
+            toRecive: id,
+            recipientId: userId,
+            chatId: chatId,
+          };
+
+          await updateDoc(userDocRef, {
+            varning: [...userQuerySnapshot.docs[0].data().varning, newWarning],
+          });
+        } else {
+          // Якщо користувача не знайдено, ви можете вирішити, чи створити його
+          console.warn("Користувач не знайдений");
+        }
       } catch (error) {
-        console.error("Error uploading file:", error);
-        return;
+        console.error("Error updating user document:", error);
       }
     }
 
-    // Send the message
+    // Надсилання повідомлення
     try {
       const messagesCollectionRef = collection(
         db,
@@ -84,11 +150,9 @@ const ChatUser = ({ userId, id, currentUser, chatUser }) => {
         recipientId: userId,
         message,
         createdAt: new Date().toISOString(),
-        check: "false", // Assuming it's a regular user message
-        downloadURL,
+        check: "false",
       });
       setMessage("");
-      setFile(null);
       scrollRef.current.scrollIntoView({ behavior: "smooth" });
     } catch (error) {
       console.error("Error sending message:", error);
@@ -97,54 +161,55 @@ const ChatUser = ({ userId, id, currentUser, chatUser }) => {
 
   return (
     <div className={css.wrapChat}>
-      <h2> Чат з користувачем: {chatUser.firstName}</h2>
-      <div
-        style={{
-          height: "300px",
-          overflowY: "scroll",
-          border: "1px solid #ccc",
-        }}
-      >
-        {messages.map((msg) => {
-          let name;
-          const uid = parseInt(msg.uid, 10);
-          if (uid === currentUser.userId) {
-            name = chatUser.firstName;
-          }
-          if (uid === chatUser.userId) {
-            name = currentUser.firstName;
-          }
-          return (
-            <div key={msg.id}>
-              <strong>{name}:</strong> {msg.message} ({msg.createdAt})
-              {msg.downloadURL && (
-                <a href={msg.downloadURL} target="_blank" rel="noreferrer">
-                  <AiFillFile className="iconFileIcon" />
-                </a>
-              )}
-            </div>
-          );
-        })}
-        <div ref={scrollRef}></div>
-      </div>
-      <div>
-        <form onSubmit={sendMessage}>
-          <input
-            type="text"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Enter your message..."
-          />
-          <label>
-            <input
-              type="file"
-              onChange={(e) => setFile(e.target.files[0])}
-              accept=".doc, .docx, .xml, .jpeg, .png, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      <div className={css.wrapChatSmall}>
+        <h2 className={css.h2Chat}>Чат з користувачем: {chatUser.firstName}</h2>
+        <p className={css.desckWarning}>
+          Просимо зауважити, що передача персональних контактів в обхід
+          платформи відслідковується. При порушені правил ви будете заблоковані
+          без можливості повернення коштів
+        </p>
+        <div className={css.chatWindovWrap}>
+          {messages.map((msg) => {
+            let name;
+            let messageStyle, messageStyleSmal;
+
+            const uid = parseInt(msg.uid, 10);
+            if (uid === currentUser.userId) {
+              name = chatUser.firstName;
+              messageStyle = css.myMessage; // Додайте клас для повідомлення від поточного користувача
+              messageStyleSmal = css.notMymes;
+            } else if (uid === chatUser.userId) {
+              name = currentUser.firstName;
+              messageStyle = css.otherUserMessage; // Додайте клас для повідомлення від іншого користувача
+              messageStyleSmal = css.myMymes;
+            }
+
+            return (
+              <div className={`${css.masWrap} ${messageStyle}`} key={msg.id}>
+                <strong className={css.outhNameMes}>{name}:</strong>{" "}
+                <div className={`${css.wrapMesMes} ${messageStyleSmal}`}>
+                  <p className={css.pMes}>{msg.message}</p>
+                  <p className={css.pTime}>({msg.createdAt})</p>
+                </div>
+              </div>
+            );
+          })}
+          <div ref={scrollRef}></div>
+        </div>
+        <div className={css.formWrap}>
+          <form className={css.theForm} onSubmit={sendMessage}>
+            <textarea
+              className={css.formInput}
+              type="text"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Напишіть ваше повідомлення..."
             />
-            <span>Select a file</span>
-          </label>
-          <button type="submit">Send</button>
-        </form>
+            <button className={css.buttonSub} type="submit">
+              Надіслати
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

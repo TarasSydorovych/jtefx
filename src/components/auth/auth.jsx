@@ -160,6 +160,7 @@ const Auth = () => {
           language: [],
           phone: "",
           mail: "",
+          varning: [],
         });
 
         // Зберегти інформацію в localStorage
