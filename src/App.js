@@ -18,6 +18,8 @@ import Candidate from "./components/recruit/recruitForHr/candidate";
 import AllVacancy from "./components/recruit/allVacancy/allVacancy";
 import Chat from "./components/chat/chat";
 import ChatPage from "./components/chat/chatPage";
+import BrandManager from "./components/afilate/brandManager/brandManager";
+import AddTrafic from "./components/afilate/brandManager/addTrafic";
 function App() {
   const { isRegistered, role, userId } = checkRegistration();
   return (
@@ -44,6 +46,13 @@ function App() {
         {role === "worker" && (
           <Route path="/recruit/my/:id" element={<WorkerPage />} />
         )}
+        {role === "brand" && (
+          <Route path="/brand/add" element={<AddTrafic />} />
+        )}
+        {role === "brand" && (
+          <Route path="/brand/request" element={<BrandManager />} />
+        )}
+        {role === "brand" && <Route path="/brand" element={<BrandManager />} />}
         <Route path="/vacancy/:id" element={<Vacancy />} />
         <Route path="/vacancy" element={<AllVacancy userId={userId} />} />
       </Routes>

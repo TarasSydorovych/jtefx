@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import css from "./header.module.css";
 import { useEffect, useState } from "react";
-
+import { checkRegistration } from "../../../function/authUtils";
 import Contact from "./contact";
-export default function Header() {
+export default function HeaderForBrand({ currentUser }) {
   const [openContact, setOpenContact] = useState(false);
   const [headerSticky, setHeaderSticky] = useState(false);
+  const { firstName, userId } = checkRegistration();
   const open = () => {
     setOpenContact(true);
   };
@@ -31,24 +32,33 @@ export default function Header() {
         </h1>
       </Link>
       <nav className={css.navStyle}>
-        <ul className={css.navUl}>
+        <ul className={css.navUlHr}>
           <Link to="/" className={css.navLi}>
             <li className={css.navLi}>Головна</li>
           </Link>
-          <Link to="/blog" className={css.navLi}>
-            <li className={css.navLi}>Блог</li>
-          </Link>
           <Link to="/recruit" className={css.navLi}>
-            <li className={css.navLi}>Рекрутинг</li>
+            <li className={css.navLi}>Мої заявки</li>
           </Link>
-          <Link to="/brand" className={css.navLi}>
-            <li className={css.navLi}>Маркетинг</li>
+          <Link to="/brand/add" className={css.navLi}>
+            <li className={css.navLi}>Додати заявку</li>
           </Link>
-          <Link to="/auth" className={css.navLi}>
-            <li className={css.navLi}>Реєстрація</li>
+          <Link to="/candidate" className={css.navLi}>
+            <li className={css.navLi}>Кандидати</li>
           </Link>
         </ul>
       </nav>
+      <Link to="/recruit" className={css.navLiWr}>
+        <div className={css.iconWrapRec}>
+          <div className={css.online}>ONLINE</div>
+          {currentUser.imageUlr === "" && (
+            <div className={css.circul}>{firstName[0]}</div>
+          )}
+          {currentUser.imageUlr !== "" && (
+            <img className={css.circulImg} src={currentUser.imageUlr} alt="" />
+          )}
+          <p className={css.navLi}>{firstName}</p>
+        </div>
+      </Link>
       <div className={css.hamburgerWr} onClick={open}>
         <span className={css.hambSpFirs}></span>
         <span className={css.hambSpSecont}></span>
