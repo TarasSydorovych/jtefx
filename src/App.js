@@ -20,18 +20,22 @@ import Chat from "./components/chat/chat";
 import ChatPage from "./components/chat/chatPage";
 import BrandManager from "./components/afilate/brandManager/brandManager";
 import AddTrafic from "./components/afilate/brandManager/addTrafic";
+import AllRequest from "./components/afilate/allReguest/allRequest";
+import Admin from "./components/admin/admin";
+import ChatForAdmin from "./components/chat/chatForAdmin";
 function App() {
   const { isRegistered, role, userId } = checkRegistration();
   return (
     <>
       <Routes>
         <Route path="/" element={<Main />} />
-
+        <Route path="/admin" element={<Admin />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogPage />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/addw" element={<AddProfession />} />
         <Route path="/chat/:id" element={<Chat />} />
+        <Route path="/admchat/:id" element={<ChatForAdmin />} />
         <Route
           path="/chat"
           element={<ChatPage role={role} userId={userId} />}
@@ -52,6 +56,10 @@ function App() {
         {role === "brand" && (
           <Route path="/brand/request" element={<BrandManager />} />
         )}
+        {role === "brand" && (
+          <Route path="/brand/allRequest" element={<AllRequest />} />
+        )}
+        {role === "afilate" && <Route path="/brand" element={<AllRequest />} />}
         {role === "brand" && <Route path="/brand" element={<BrandManager />} />}
         <Route path="/vacancy/:id" element={<Vacancy />} />
         <Route path="/vacancy" element={<AllVacancy userId={userId} />} />

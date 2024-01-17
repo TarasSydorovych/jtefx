@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import {
   collection,
   addDoc,
@@ -41,11 +41,43 @@ const ChatUser = ({ userId, id, currentUser, chatUser }) => {
     const matches = text.match(emailRegex);
     return matches || [];
   };
+  const markMessagesAsRead = async () => {
+    try {
+      const chatId = [userId, id].sort().join("_");
+      const messagesCollectionRef = collection(
+        db,
+        `messages/${chatId}/messages`
+      );
+      const userIdAsString1 = String(currentUser.userId);
+      const q = query(
+        messagesCollectionRef,
+        where("check", "==", "false"),
+        where("uid", "==", userIdAsString1)
+      );
+      const querySnapshot = await getDocs(q);
 
+      const updatePromises = querySnapshot.docs.map((doc) => {
+        const docRef = doc.ref;
+
+        return updateDoc(docRef, { check: "true" });
+      });
+
+      await Promise.all(updatePromises);
+    } catch (error) {
+      console.error("Error marking messages as read:", error);
+    }
+  };
   // Функція для аналізу тексту та виявлення ключових слів
   const findKeywords = (text, keywords) => {
     const lowercasedText = text.toLowerCase();
     return keywords.filter((keyword) => lowercasedText.includes(keyword));
+  };
+  const scrollToBottom = () => {
+    if (scrollRef.current) {
+      let hiddenElement = document.getElementById("box");
+
+      hiddenElement.scrollIntoView({ behavior: "smooth" });
+    }
   };
   useEffect(() => {
     const fetchMessages = async () => {
@@ -60,9 +92,9 @@ const ChatUser = ({ userId, id, currentUser, chatUser }) => {
         querySnapshot.forEach((doc) => {
           fetchedMessages.push({ ...doc.data(), id: doc.id });
         });
-        console.log(querySnapshot);
+
         setMessages(fetchedMessages);
-        scrollRef.current.scrollIntoView({ behavior: "smooth" });
+        markMessagesAsRead();
       });
 
       return unsubscribe;
@@ -72,12 +104,14 @@ const ChatUser = ({ userId, id, currentUser, chatUser }) => {
       fetchMessages();
     }
   }, [id, userId]);
-
+  useEffect(() => {
+    setTimeout(() => scrollToBottom(), 0);
+  }, [messages]);
   const sendMessage = async (event) => {
     event.preventDefault();
 
     if (message.trim() === "") {
-      alert("Enter a valid message");
+      alert("Введіть коректне повідомлення");
       return;
     }
 
@@ -89,8 +123,14 @@ const ChatUser = ({ userId, id, currentUser, chatUser }) => {
     const chatRoomQuerySnapshot = await getDocs(chatRoomQuery);
 
     if (isEmpty(chatRoomQuerySnapshot.docs)) {
+      const currentDate = new Date();
       // Якщо документ не існує, то додайте його до колекції
-      await addDoc(collection(db, "chatRoom"), { userId, id, chatId });
+      await addDoc(collection(db, "chatRoom"), {
+        userId,
+        id,
+        chatId,
+        currentDate,
+      });
     }
     // Аналіз тексту перед відправкою
     const phoneNumbers = findPhoneNumbers(message);
@@ -125,6 +165,7 @@ const ChatUser = ({ userId, id, currentUser, chatUser }) => {
             toRecive: id,
             recipientId: userId,
             chatId: chatId,
+            check: false,
           };
 
           await updateDoc(userDocRef, {
@@ -132,7 +173,6 @@ const ChatUser = ({ userId, id, currentUser, chatUser }) => {
           });
         } else {
           // Якщо користувача не знайдено, ви можете вирішити, чи створити його
-          console.warn("Користувач не знайдений");
         }
       } catch (error) {
         console.error("Error updating user document:", error);
@@ -153,7 +193,7 @@ const ChatUser = ({ userId, id, currentUser, chatUser }) => {
         check: "false",
       });
       setMessage("");
-      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+      //scrollRef.current.scrollIntoView({ behavior: "smooth" });
     } catch (error) {
       console.error("Error sending message:", error);
     }
@@ -194,7 +234,7 @@ const ChatUser = ({ userId, id, currentUser, chatUser }) => {
               </div>
             );
           })}
-          <div ref={scrollRef}></div>
+          <div id="box" ref={scrollRef}></div>
         </div>
         <div className={css.formWrap}>
           <form className={css.theForm} onSubmit={sendMessage}>

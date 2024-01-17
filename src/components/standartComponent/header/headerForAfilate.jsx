@@ -3,7 +3,7 @@ import css from "./header.module.css";
 import { useEffect, useState } from "react";
 import { checkRegistration } from "../../../function/authUtils";
 import Contact from "./contact";
-export default function HeaderForBrand({ currentUser }) {
+export default function HeaderForAfilate({ currentUser }) {
   const [openContact, setOpenContact] = useState(false);
   const [headerSticky, setHeaderSticky] = useState(false);
   const { firstName, userId } = checkRegistration();
@@ -36,13 +36,8 @@ export default function HeaderForBrand({ currentUser }) {
           <Link to="/" className={css.navLi}>
             <li className={css.navLi}>Головна</li>
           </Link>
-          <Link to="/brand/request" className={css.navLi}>
-            <li className={css.navLi}>Мої заявки</li>
-          </Link>
-          <Link to="/brand/add" className={css.navLi}>
-            <li className={css.navLi}>Додати заявку</li>
-          </Link>
-          <Link to="/brand/allRequest" className={css.navLi}>
+
+          <Link to="/brand" className={css.navLi}>
             <li className={css.navLi}>Заявки</li>
           </Link>
           <Link to="/chat" className={css.navLi}>

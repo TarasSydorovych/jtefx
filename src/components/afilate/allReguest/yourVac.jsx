@@ -19,11 +19,10 @@ const YourVac = ({ data, userId }) => {
   const [sortOrder, setSortOrder] = useState("");
   useEffect(() => {
     // Фільтрація об'єктів за умовою data[i].userId === userId
-    const filteredVacancies = data.filter((item) => item.userId === userId);
 
     // Збереження відфільтрованих об'єктів у стані
-    setUserVacancies(filteredVacancies);
-    setFilteredUserVacancies(filteredVacancies);
+    setUserVacancies(data);
+    setFilteredUserVacancies(data);
   }, [data, userId]);
   const handleSearchChange = (e) => {
     const searchTerm = e.target.value;
@@ -163,7 +162,7 @@ const YourVac = ({ data, userId }) => {
   };
   return (
     <section className={css.yourVacWrap}>
-      <h1 className={css.h1YourVac}>Ваші заявки</h1>
+      <h1 className={css.h1YourVac}>Заявки</h1>
       <div className={css.sortFotDiv}>
         <label className={css.fortFor} htmlFor="sortSelect">
           Сортувати за:

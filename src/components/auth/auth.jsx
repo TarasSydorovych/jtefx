@@ -4,7 +4,14 @@ import Header from "../standartComponent/header/header";
 import { useEffect, useState } from "react";
 import TelegramLogoutButton from "./logOut"; // Припустимо, що ваші файли розташовані в одній папці
 
-import { collection, addDoc, where, query, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  where,
+  query,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../../function/firebase";
 import { checkRegistration } from "../../function/authUtils";
 import clearRegistrationState from "../../function/authOut";
@@ -71,7 +78,6 @@ const Auth = () => {
   };
 
   const handleTelegramResponse = async (response) => {
-    console.log("існує", response);
     try {
       // Перевірка, чи існує користувач з вказаним userId
       const querySnapshot = await getDocs(
@@ -130,7 +136,7 @@ const Auth = () => {
           username: userName,
           userId: userId,
           balance: "0",
-          inBlock: "false",
+          inBlock: false,
           role: hr
             ? "hr"
             : worker
@@ -162,7 +168,8 @@ const Auth = () => {
           mail: "",
           varning: [],
         });
-
+        const uid = docRef.id;
+        await updateDoc(docRef, { uid: uid });
         // Зберегти інформацію в localStorage
       }
       window.location.reload();

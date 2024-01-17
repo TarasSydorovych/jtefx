@@ -6,6 +6,8 @@ import withFirebaseCollection from "../HOK/withFirebaseCollection";
 import { useEffect, useState } from "react";
 import HeaderForHr from "../standartComponent/header/headerForHr";
 import HeaderForRecruit from "../standartComponent/header/headerForRecruit";
+import HeaderForBrand from "../standartComponent/header/headerForBrand";
+import HeaderForAfilate from "../standartComponent/header/headerForAfilate";
 const Chat = ({ data }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [chatUser, setChatUser] = useState(null);
@@ -30,6 +32,12 @@ const Chat = ({ data }) => {
       )}
       {currentUser && role === "worker" && (
         <HeaderForRecruit currentUser={currentUser} />
+      )}
+      {currentUser && role === "brand" && (
+        <HeaderForBrand currentUser={currentUser} />
+      )}
+      {currentUser && role === "afilate" && (
+        <HeaderForAfilate currentUser={currentUser} />
       )}
       {currentUser && chatUser && isRegistered && (
         <ChatUser

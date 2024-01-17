@@ -125,3 +125,85 @@
   height: auto;
   margin-top: 100px;
 }
+.firstBlockWrap {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.smalWrC {
+  width: 800px;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.chatRoomP {
+  font-family: var(--custom-font);
+  font-size: 25px;
+  color: var(--standart-color);
+  font-weight: bolder;
+}
+.chatOne {
+  width: calc(500px - 60px);
+  height: calc(160px - 60px);
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border: 1px solid var(--secondary-color);
+
+  border-radius: 5px;
+}
+.userInformation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconWrap {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconWrapPhoto {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.picForChat {
+  width: 100%;
+  height: auto;
+}
+.userName {
+  font-family: var(--custom-font);
+  font-size: 20px;
+}
+.xfn {
+  font-family: var(--custom-font);
+  font-size: 20px;
+}
+.newMessage {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: var(--custom-font);
+  color: var(--secondary-color);
+}
+.linka {
+  text-decoration: none;
+  font-family: var(--custom-font);
+  font-size: 20px;
+  color: black;
+}

@@ -4,6 +4,8 @@ import HeaderForHr from "../standartComponent/header/headerForHr";
 import css from "./chat.module.css";
 import HeaderForRecruit from "../standartComponent/header/headerForRecruit";
 import FirstBlockChat from "./firstBlockChat";
+import HeaderForBrand from "../standartComponent/header/headerForBrand";
+import HeaderForAfilate from "../standartComponent/header/headerForAfilate";
 const ChatPage = ({ data, role, userId }) => {
   const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
@@ -17,6 +19,12 @@ const ChatPage = ({ data, role, userId }) => {
       )}
       {currentUser && role === "worker" && (
         <HeaderForRecruit currentUser={currentUser} />
+      )}
+      {currentUser && role === "brand" && (
+        <HeaderForBrand currentUser={currentUser} />
+      )}
+      {currentUser && role === "afilate" && (
+        <HeaderForAfilate currentUser={currentUser} />
       )}
       {userId && (
         <section className={css.allChatWrap}>

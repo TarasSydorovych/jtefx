@@ -5,7 +5,8 @@ import css from "./recruitFhr.module.css";
 import { checkRegistration } from "../../../function/authUtils";
 import YourVac from "./yourVac";
 import HeaderForBrand from "../../standartComponent/header/headerForBrand";
-const BrandManager = ({ data }) => {
+import HeaderForAfilate from "../../standartComponent/header/headerForAfilate";
+const AllRequest = ({ data }) => {
   const { firstName, userId } = checkRegistration();
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -16,14 +17,19 @@ const BrandManager = ({ data }) => {
     // Зберігаємо користувача в стейт
     setCurrentUser(foundUser);
   }, [data, userId]);
+  console.log();
   return (
     <>
-      {currentUser && <HeaderForBrand currentUser={currentUser} />}
-
+      {currentUser && currentUser.role === "brand" && (
+        <HeaderForBrand currentUser={currentUser} />
+      )}
+      {currentUser && currentUser.role === "afilate" && (
+        <HeaderForAfilate currentUser={currentUser} />
+      )}
       <section className={css.wrapRecFrec}>
         <YourVac userId={userId} />
       </section>
     </>
   );
 };
-export default withFirebaseCollection("users")(BrandManager);
+export default withFirebaseCollection("users")(AllRequest);
