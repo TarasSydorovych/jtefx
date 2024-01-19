@@ -13,7 +13,8 @@ import {
 import { collection, getDocs, addDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../function/firebase";
 import HeaderForBrand from "../../standartComponent/header/headerForBrand";
-const AddTrafic = ({ data }) => {
+import HeaderForAfilate from "../../standartComponent/header/headerForAfilate";
+const AddRequest = ({ data }) => {
   const uid = uuidv4();
   const { firstName, userId } = checkRegistration();
   const [currentUser, setCurrentUser] = useState(null);
@@ -41,7 +42,7 @@ const AddTrafic = ({ data }) => {
 
   const updateUserDataInFirebase = async () => {
     try {
-      const vacanciesCollection = collection(db, "trafic");
+      const vacanciesCollection = collection(db, "request");
       const currentDate = new Date();
       // Створення об'єкта з даними для додавання до колекції
       const vacancyData = {
@@ -101,9 +102,9 @@ const AddTrafic = ({ data }) => {
   }, []);
   return (
     <>
-      {currentUser && <HeaderForBrand currentUser={currentUser} />}
+      {currentUser && <HeaderForAfilate currentUser={currentUser} />}
       <section className={css.wrapAddVac}>
-        <h1 className={css.h1AddV}>Додайте заявку</h1>
+        <h1 className={css.h1AddV}>Додайте запит</h1>
         <div className={css.profileWrap}>
           <div className={css.wrapSec}>
             <p className={css.pPosada}>Ціна за ліда в $</p>
@@ -230,4 +231,4 @@ const AddTrafic = ({ data }) => {
     </>
   );
 };
-export default withFirebaseCollection("users")(AddTrafic);
+export default withFirebaseCollection("users")(AddRequest);

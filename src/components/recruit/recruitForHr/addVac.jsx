@@ -10,7 +10,7 @@ import {
   GetCity,
   GetLanguages, //async functions
 } from "react-country-state-city";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../function/firebase";
 const AddVac = ({ data }) => {
   const uid = uuidv4();
@@ -94,7 +94,7 @@ const AddVac = ({ data }) => {
 
     try {
       const vacanciesCollection = collection(db, "vacancies");
-
+      const currentTime = new Date();
       // Створення об'єкта з даними для додавання до колекції
       const vacancyData = {
         uid,
@@ -110,6 +110,8 @@ const AddVac = ({ data }) => {
         isChecked3,
         achievement: coddingAch,
         questionForE: encodedQuestionForE,
+        aprovied: false,
+        time: currentTime,
         // Додайте інші поля за необхідності
       };
 
@@ -119,6 +121,7 @@ const AddVac = ({ data }) => {
       // Отримання ID новоствореного документа (вашого вакансії)
       const newVacancyId = docRef.id;
 
+      await updateDoc(docRef, { uid: newVacancyId });
       // Організація перезавантаження сторінки після успішного додавання
       if (newVacancyId) {
         window.location.reload();

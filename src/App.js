@@ -23,6 +23,8 @@ import AddTrafic from "./components/afilate/brandManager/addTrafic";
 import AllRequest from "./components/afilate/allReguest/allRequest";
 import Admin from "./components/admin/admin";
 import ChatForAdmin from "./components/chat/chatForAdmin";
+import AddRequest from "./components/afilate/allReguest/addRequest";
+import AllRequestMy from "./components/afilate/myreq/allRequestMy";
 function App() {
   const { isRegistered, role, userId } = checkRegistration();
   return (
@@ -60,6 +62,15 @@ function App() {
           <Route path="/brand/allRequest" element={<AllRequest />} />
         )}
         {role === "afilate" && <Route path="/brand" element={<AllRequest />} />}
+        {role === "afilate" && (
+          <Route path="/request/add" element={<AddRequest />} />
+        )}
+        {role === "afilate" && (
+          <Route path="/request/my" element={<AllRequestMy />} />
+        )}
+        {role === "brand" && (
+          <Route path="/request/my" element={<AllRequestMy />} />
+        )}
         {role === "brand" && <Route path="/brand" element={<BrandManager />} />}
         <Route path="/vacancy/:id" element={<Vacancy />} />
         <Route path="/vacancy" element={<AllVacancy userId={userId} />} />

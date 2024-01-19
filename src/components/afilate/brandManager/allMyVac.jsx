@@ -50,6 +50,7 @@ const AllMyVac = ({ userVacancies }) => {
                   <p className={css.pMain}>Traffic Source: {el.traficSource}</p>
                   <p className={css.smallp}>Джерело трафіку</p>
                 </div>
+                <p className={css.pMain}>Коментар: {el.comment}</p>
               </div>
             </div>
           );

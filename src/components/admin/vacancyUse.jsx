@@ -12,24 +12,31 @@ import {
 } from "firebase/firestore";
 import { Link } from "react-router-dom";
 
-const UserSet = ({ data }) => {
+const VacancyUse = ({ data }) => {
   const [products, setProducts] = useState([]);
   const [editFields, setEditFields] = useState({});
 
   useEffect(() => {
     if (data.length > 0) {
-      setProducts(data);
+      const sortedData = data.slice().sort((a, b) => {
+        console.log(b.time - a.time);
+        return b.time - a.time;
+      });
+      setProducts(sortedData);
     }
   }, [data]);
 
   const handleEditFieldChange = (event, uid, fieldName) => {
     const { value } = event.target;
-
+    const updatedValue =
+      fieldName === "questionForE" || fieldName === "achievement"
+        ? encodeURIComponent(value)
+        : value;
     setEditFields((prevEditFields) => ({
       ...prevEditFields,
       [uid]: {
         ...prevEditFields[uid],
-        [fieldName]: value,
+        [fieldName]: updatedValue,
       },
     }));
   };
@@ -45,7 +52,7 @@ const UserSet = ({ data }) => {
     const updatedFields = editFields[uid];
 
     try {
-      await updateDoc(doc(collection(db, "users"), uid), {
+      await updateDoc(doc(collection(db, "vacancies"), uid), {
         ...updatedFields,
         updatedAt: serverTimestamp(),
       });
@@ -66,19 +73,7 @@ const UserSet = ({ data }) => {
     }
   };
   /////////////////////////////////////
-  const handleVarningChange = (uid, index, value) => {
-    setEditFields((prevEditFields) => ({
-      ...prevEditFields,
-      [uid]: {
-        ...prevEditFields[uid],
-        varning: prevEditFields[uid].varning.map((item, i) =>
-          i === index ? { ...item, check: value === true } : item
-        ),
-      },
-    }));
-  };
-  const currentTime = new Date();
-  console.log(currentTime);
+
   ////////////////////////////////////////
   const handleCheckboxChange = (uid, fieldName) => {
     setEditFields((prevEditFields) => ({
@@ -96,112 +91,94 @@ const UserSet = ({ data }) => {
       <table className={css.table}>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Імʼя</th>
-            <th>Баланс</th>
+            <th>ID користувача</th>
+            <th>Посада</th>
+            <th>Група</th>
             <th>Видимість</th>
-            <th>Email</th>
-            <th>Телефон</th>
-            <th>Роль</th>
-            <th>Логін в tg</th>
-            <th>Попередження</th>
+            <th>Досягнення</th>
+            <th>Про компанію</th>
           </tr>
         </thead>
         <tbody>
           {products.map((product) => (
             <tr key={product.uid}>
-              <td>{product.userId}</td>
+              <td>
+                <p className={css.psd}>{product.userId}</p>
+              </td>
               <td>
                 {editFields[product.uid] ? (
                   <input
                     type="text"
-                    value={editFields[product.uid].firstName}
+                    value={editFields[product.uid].posada}
                     onChange={(e) =>
-                      handleEditFieldChange(e, product.uid, "firstName")
+                      handleEditFieldChange(e, product.uid, "posada")
                     }
                   />
                 ) : (
-                  product.firstName
+                  <p className={css.psd}> {product.posada} </p>
                 )}
               </td>
               <td>
                 {editFields[product.uid] ? (
                   <input
                     type="text"
-                    value={editFields[product.uid].balance}
+                    value={editFields[product.uid].napram}
                     onChange={(e) =>
-                      handleEditFieldChange(e, product.uid, "balance")
+                      handleEditFieldChange(e, product.uid, "napram")
                     }
                   />
                 ) : (
-                  product.balance
+                  <p className={css.psd}>{product.napram}</p>
                 )}
               </td>
               <td>
                 {editFields[product.uid] ? (
                   <input
                     type="checkbox"
-                    checked={editFields[product.uid].inBlock}
+                    checked={editFields[product.uid].aprovied}
                     onChange={() =>
-                      handleCheckboxChange(product.uid, "inBlock")
+                      handleCheckboxChange(product.uid, "aprovied")
                     }
                   />
                 ) : (
-                  <span>{product.inBlock ? "Так" : "Ні"}</span>
+                  <span>{product.aprovied ? "Так" : "Ні"}</span>
                 )}
               </td>
               <td>
                 {editFields[product.uid] ? (
-                  <input
+                  <textarea
                     type="text"
-                    value={editFields[product.uid].mail}
+                    value={decodeURIComponent(
+                      editFields[product.uid]?.achievement || ""
+                    )}
                     onChange={(e) =>
-                      handleEditFieldChange(e, product.uid, "mail")
+                      handleEditFieldChange(e, product.uid, "achievement")
                     }
                   />
                 ) : (
-                  product.mail
+                  <p className={css.psd}>
+                    {decodeURIComponent(product.achievement)}
+                  </p>
                 )}
               </td>
               <td>
                 {editFields[product.uid] ? (
-                  <input
+                  <textarea
                     type="text"
-                    value={editFields[product.uid].phone}
+                    value={decodeURIComponent(
+                      editFields[product.uid].questionForE
+                    )}
                     onChange={(e) =>
-                      handleEditFieldChange(e, product.uid, "phone")
+                      handleEditFieldChange(e, product.uid, "questionForE")
                     }
                   />
                 ) : (
-                  product.phone
+                  <p className={css.psd}>
+                    {decodeURIComponent(product.questionForE)}
+                  </p>
                 )}
               </td>
-              <td>
-                {editFields[product.uid] ? (
-                  <input
-                    type="text"
-                    value={editFields[product.uid].role}
-                    onChange={(e) =>
-                      handleEditFieldChange(e, product.uid, "role")
-                    }
-                  />
-                ) : (
-                  product.role
-                )}
-              </td>
-              <td>
-                {editFields[product.uid] ? (
-                  <input
-                    type="text"
-                    value={editFields[product.uid].username}
-                    onChange={(e) =>
-                      handleEditFieldChange(e, product.uid, "username")
-                    }
-                  />
-                ) : (
-                  product.username
-                )}
-              </td>
+
               {/*   <td>
                 {editFields[product.userId] ? (
                   <input
@@ -215,37 +192,7 @@ const UserSet = ({ data }) => {
                   product.varning
                 )}
               </td>*/}
-              <td>
-                {editFields[product.uid]
-                  ? editFields[product.uid].varning.map((item, index) => (
-                      <div key={index} className={css.checkboxContainer}>
-                        <input
-                          type="checkbox"
-                          checked={item.check}
-                          onChange={(e) =>
-                            handleVarningChange(
-                              product.uid,
-                              index,
-                              e.target.checked
-                            )
-                          }
-                        />
-                      </div>
-                    ))
-                  : product.varning.map((item, index) => (
-                      <div key={index} className={css.checkboxContainer}>
-                        Статус перевірки:
-                        {item.check === false && "Не перевірено"}
-                        {item.check === true && "Перевірено"}
-                        <a
-                          href={`/admchat/${item.chatId}?${product.userId}`}
-                          target="_blanck"
-                        >
-                          (ЧАТ)
-                        </a>
-                      </div>
-                    ))}
-              </td>
+
               <td>
                 {editFields[product.uid] ? (
                   <button onClick={() => handleUpgradeClick(product.uid)}>
@@ -264,4 +211,4 @@ const UserSet = ({ data }) => {
     </div>
   );
 };
-export default withFirebaseCollection("users")(UserSet);
+export default withFirebaseCollection("vacancies")(VacancyUse);

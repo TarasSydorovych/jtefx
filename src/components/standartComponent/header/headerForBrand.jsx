@@ -45,6 +45,9 @@ export default function HeaderForBrand({ currentUser }) {
           <Link to="/brand/allRequest" className={css.navLi}>
             <li className={css.navLi}>Заявки</li>
           </Link>
+          <Link to="/request/my" className={css.navLi}>
+            <li className={css.navLi}>Запити</li>
+          </Link>
           <Link to="/chat" className={css.navLi}>
             <li className={css.navLi}>Чат</li>
           </Link>

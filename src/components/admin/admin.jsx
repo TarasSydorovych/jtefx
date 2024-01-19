@@ -2,6 +2,9 @@ import { useState } from "react";
 import Header from "../standartComponent/header/header";
 import css from "./admin.module.css";
 import UserSet from "./userSet";
+import VacancyUse from "./vacancyUse";
+import BrandUseAdm from "./brandUseAdm";
+import AfilateUseAdm from "./afilateUseAdm";
 const Admin = () => {
   const [userUse, setUserUse] = useState(false);
   const [chatUse, setChatUse] = useState(false);
@@ -41,7 +44,7 @@ const Admin = () => {
     setChatUse(false);
     setVacancyUse(false);
     setBrandUse(false);
-    setAfilateUse(afilateUse);
+    setAfilateUse(!afilateUse);
   };
   return (
     <>
@@ -63,6 +66,9 @@ const Admin = () => {
           </li>
         </ul>
         {userUse && <UserSet />}
+        {vacancyUse && <VacancyUse />}
+        {brandUse && <BrandUseAdm />}
+        {afilateUse && <AfilateUseAdm />}
       </div>
     </>
   );

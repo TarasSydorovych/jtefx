@@ -40,6 +40,12 @@ export default function HeaderForAfilate({ currentUser }) {
           <Link to="/brand" className={css.navLi}>
             <li className={css.navLi}>Заявки</li>
           </Link>
+          <Link to="/request/add" className={css.navLi}>
+            <li className={css.navLi}>Додати запит</li>
+          </Link>
+          <Link to="/request/my" className={css.navLi}>
+            <li className={css.navLi}>Мої запити</li>
+          </Link>
           <Link to="/chat" className={css.navLi}>
             <li className={css.navLi}>Чат</li>
           </Link>
