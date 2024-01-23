@@ -5,6 +5,9 @@ import UserSet from "./userSet";
 import VacancyUse from "./vacancyUse";
 import BrandUseAdm from "./brandUseAdm";
 import AfilateUseAdm from "./afilateUseAdm";
+import axios from "axios";
+import CardInput from "../creditCard/cardInput";
+
 const Admin = () => {
   const [userUse, setUserUse] = useState(false);
   const [chatUse, setChatUse] = useState(false);
@@ -46,6 +49,29 @@ const Admin = () => {
     setBrandUse(false);
     setAfilateUse(!afilateUse);
   };
+
+  const testWebhook = async () => {
+    try {
+      const webhookUrl = "http://localhost:3000/webhook"; // Замініть це на ваш реальний URL
+
+      // Модель даних для тестового вебхука (змініть її відповідно до вашого API)
+      const testData = {
+        status: "success",
+        modifiedDate: new Date().toISOString(),
+        // Додайте інші необхідні дані для тестування
+      };
+
+      const response = await axios.post(webhookUrl, testData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log("Webhook test successful:", response.data);
+    } catch (error) {
+      console.error("Error testing webhook:", error.response.data);
+    }
+  };
   return (
     <>
       <Header />
@@ -63,6 +89,10 @@ const Admin = () => {
           </li>
           <li className={css.liForAdmin} onClick={afilateFun}>
             Управління від афілейт менеджерів
+          </li>
+
+          <li className={css.liForAdmin} onClick={testWebhook}>
+            testWebhook
           </li>
         </ul>
         {userUse && <UserSet />}

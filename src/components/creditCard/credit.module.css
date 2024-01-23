@@ -1,0 +1,117 @@
+:root {
+  --standart-color: #222222;
+  --secondary-color: #a3a3a5;
+  --red-color: #3e3092;
+  --colred-color: #f4223c;
+
+  --custom-font: Ubuntu;
+}
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 100%;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+
+  padding: 10px 10px 10px 10px;
+  width: 300px;
+}
+.wrapForD {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 550px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(40, 40, 40, 0.1);
+}
+.cardNum {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.cardNumSm {
+  width: 40%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.card label {
+  font-size: 12px;
+  font-weight: var(--custom-font);
+  color: black;
+  margin-bottom: 5px;
+}
+.wrapCv {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pay {
+  width: 100%;
+  height: 40px;
+  font-weight: var(--custom-font);
+
+  color: var(--standart-color);
+  font-weight: bolder;
+  font-size: 18px;
+  cursor: pointer;
+  border: 1px solid var(--standart-color);
+  border-radius: 5px;
+  transition: background 0.5s ease;
+}
+.pay:hover {
+  background: black;
+  color: white;
+}
+
+.errorMsg {
+  font-family: var(--custom-font);
+  color: black;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.logoInf {
+  width: 200px;
+  height: 402px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--secondary-color);
+  border-radius: 0 130px 130px 0;
+}
+.logo {
+  font-family: var(--custom-font);
+  font-size: 30px;
+  text-transform: uppercase;
+  color: var(--standart-color);
+  letter-spacing: 14px;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  margin-bottom: 0;
+  text-decoration: none;
+  transition: text-shadow 0.6s ease;
+}
+.logo:hover {
+  text-shadow: 2px 2px 3px var(--secondary-color); /* тінь для тексту при наведенні */
+}
+.spanLogo {
+  font-family: var(--custom-font);
+  font-size: 12px;
+  letter-spacing: 0;
+  color: var(--standart-color);
+  margin-top: 0;
+}

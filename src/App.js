@@ -25,6 +25,7 @@ import Admin from "./components/admin/admin";
 import ChatForAdmin from "./components/chat/chatForAdmin";
 import AddRequest from "./components/afilate/allReguest/addRequest";
 import AllRequestMy from "./components/afilate/myreq/allRequestMy";
+import CardInput from "./components/creditCard/cardInput";
 function App() {
   const { isRegistered, role, userId } = checkRegistration();
   return (
@@ -70,6 +71,9 @@ function App() {
         )}
         {role === "brand" && (
           <Route path="/request/my" element={<AllRequestMy />} />
+        )}
+        {role === "brand" && (
+          <Route path="/pay" element={<CardInput userId={userId} />} />
         )}
         {role === "brand" && <Route path="/brand" element={<BrandManager />} />}
         <Route path="/vacancy/:id" element={<Vacancy />} />

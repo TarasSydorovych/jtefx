@@ -51,6 +51,9 @@ export default function HeaderForBrand({ currentUser }) {
           <Link to="/chat" className={css.navLi}>
             <li className={css.navLi}>Чат</li>
           </Link>
+          <Link to="/pay" className={css.navLi}>
+            <li className={css.navLi}>Поповнити рахунок</li>
+          </Link>
         </ul>
       </nav>
       <Link to="/recruit" className={css.navLiWr}>
