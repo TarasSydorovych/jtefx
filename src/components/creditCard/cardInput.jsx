@@ -126,7 +126,7 @@ const CardInput = ({ data, userId }) => {
         {
           headers: {
             "Content-Type": "application/json",
-            "X-Token": "u1ZlZ8ddzRLOB7H9GL7N7-_nxRPJsQZHcdUi_dP00hEA", // Додайте свій токен
+            "X-Token": "mCJEvBVuVEnzrnbdGjjXXxg", // Додайте свій токен
           },
         }
       );

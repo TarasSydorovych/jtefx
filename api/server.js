@@ -45,7 +45,7 @@ app.post("/create-payment", async (req, res) => {
     const response = await axios.post(url, payload, {
       headers: {
         "Content-Type": "application/json",
-        "X-Token": "u1ZlZ8ddzRLOB7H9GL7N7-_nxRPJsQZHcdUi_dP00hEA",
+        "X-Token": "mCJEvBVuVEnzrnbdGjjXXxg",
       },
     });
 
