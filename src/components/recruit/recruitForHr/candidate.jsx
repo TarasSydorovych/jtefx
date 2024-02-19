@@ -20,7 +20,7 @@ const Candidate = ({ data }) => {
     <>
       {currentUser && <HeaderForHr currentUser={currentUser} />}
       <section className={css.wrapRecFrec}>
-        <SmallCandidat allWorker={allWorker} data={data} />
+        <SmallCandidat allWorker={allWorker} data={data} userId={userId} />
       </section>
     </>
   );

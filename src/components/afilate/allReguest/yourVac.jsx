@@ -184,7 +184,7 @@ const YourVac = ({ data, userId }) => {
       </div>
       <div className={css.wrapSmYour}>
         {filteredUserVacancies.length > 0 && (
-          <AllMyVac userVacancies={filteredUserVacancies} />
+          <AllMyVac userVacancies={filteredUserVacancies} userId={userId} />
         )}
         {filteredUserVacancies.length === 0 && (
           <h2 className={css.h2YouDonH}>У Вас ще немає доданих заявок</h2>

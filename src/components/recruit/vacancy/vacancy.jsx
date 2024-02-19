@@ -1,5 +1,5 @@
 import css from "./vacancy.module.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, React } from "react";
 import withFirebaseCollection from "../../HOK/withFirebaseCollection";
 import { checkRegistration } from "../../../function/authUtils";
@@ -36,7 +36,10 @@ const Vacancy = ({ data }) => {
 
     fetchProfessionsData();
   }, [userId, id]);
-
+  const navigate = useNavigate();
+  const sendMessage = (id) => {
+    navigate(`/chat/${id}`);
+  };
   useEffect(() => {
     // Знаходимо користувача в масиві за його id
     const vacancy = data.find((user) => user.uid === id);
@@ -99,7 +102,10 @@ const Vacancy = ({ data }) => {
                   </p>
                 </div>
                 {role !== "hr" && (
-                  <button className={css.sendMycont}>
+                  <button
+                    onClick={() => sendMessage(vacancyData.userId)}
+                    className={css.sendMycont}
+                  >
                     Відгукнутись на вакансію
                   </button>
                 )}

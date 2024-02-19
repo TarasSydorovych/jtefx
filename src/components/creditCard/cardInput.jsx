@@ -7,6 +7,7 @@ import withFirebaseCollection from "../HOK/withFirebaseCollection";
 import HeaderForHr from "../standartComponent/header/headerForHr";
 import HeaderForBrand from "../standartComponent/header/headerForBrand";
 import Footer from "../standartComponent/footer/foter";
+import HeaderForAfilate from "../standartComponent/header/headerForAfilate";
 
 const CardInput = ({ data, userId }) => {
   const [cardNumber, setCardNumber] = useState("");
@@ -56,6 +57,8 @@ const CardInput = ({ data, userId }) => {
       await updateDoc(docRef, { uid: newVacancyId });
       // Організація перезавантаження сторінки після успішного додавання
       if (newVacancyId) {
+        alert("Ваш платіж успішно отриманий");
+        window.location.reload();
       }
     } catch (error) {
       console.error("Error updating user data:", error);
@@ -79,7 +82,7 @@ const CardInput = ({ data, userId }) => {
     setIsExpiryDateValid(/^\d{4}$/.test(expiryDate.replace(/\s/g, "")));
     // Валідація номеру картки
     setIsCardNumberValid(/^\d{16}$/.test(cardNumber.replace(/\s/g, "")));
-  }, [cardNumber, expiryDate]);
+  }, [cardNumber, expiryDate, cvv]);
   const updateUserBalance = async (uid, newBalans) => {
     try {
       await updateDoc(doc(collection(db, "users"), uid), {
@@ -152,6 +155,9 @@ const CardInput = ({ data, userId }) => {
       )}
       {currentUser && currentUser.role === "brand" && (
         <HeaderForBrand currentUser={currentUser} />
+      )}
+      {currentUser && currentUser.role === "afilate" && (
+        <HeaderForAfilate currentUser={currentUser} />
       )}
       <div className={styles.cardContainer}>
         <div className={styles.wrapForD}>

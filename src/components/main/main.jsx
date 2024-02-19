@@ -4,10 +4,10 @@ import FourBlock from "./fourBlock";
 import css from "./main.module.css";
 import SecondBlock from "./secondBlock";
 import ThreBlock from "./threBlock";
-export default function Main() {
+export default function Main({ windowDimensions }) {
   return (
     <>
-      <Header />
+      <Header windowDimensions={windowDimensions} />
 
       <div className={css.allWrapInFirst}>
         <FirstBlock />

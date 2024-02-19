@@ -60,7 +60,7 @@ const YourVac = ({ data, userId }) => {
   };
   return (
     <section className={css.yourVacWrap}>
-      <h1 className={css.h1YourVac}>Заявки</h1>
+      <h1 className={css.h1YourVac}>Запити</h1>
       <div className={css.sortFotDiv}>
         <label className={css.fortFor} htmlFor="sortSelect">
           Сортувати за:
@@ -82,7 +82,7 @@ const YourVac = ({ data, userId }) => {
       </div>
       <div className={css.wrapSmYour}>
         {filteredUserVacancies.length > 0 && (
-          <AllMyVac userVacancies={filteredUserVacancies} />
+          <AllMyVac userVacancies={filteredUserVacancies} userId={userId} />
         )}
         {filteredUserVacancies.length === 0 && (
           <h2 className={css.h2YouDonH}>У Вас ще немає доданих заявок</h2>

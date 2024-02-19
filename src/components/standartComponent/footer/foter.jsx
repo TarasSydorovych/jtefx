@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className={css.footerWrap}>
       <h4 className={css.foterh4}>
-        JTEFX
+        JTEfx
         <span className={css.spanLogo}>Job Traffic Employee</span>
       </h4>
       <div className={css.iconWrap}>

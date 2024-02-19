@@ -19,7 +19,7 @@
 .foterh4 {
   font-family: var(--custom-font);
   font-size: 30px;
-  text-transform: uppercase;
+
   color: var(--standart-color);
   letter-spacing: 14px;
   margin-top: 0;
@@ -37,6 +37,7 @@
 .spanLogo {
   font-family: var(--custom-font);
   font-size: 12px;
+  text-transform: uppercase;
   letter-spacing: 0;
   color: var(--standart-color);
   margin-top: 0;

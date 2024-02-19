@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import css from "../recruitForHr/recruitFhr.module.css";
 import React, { useState } from "react";
 
-const AllMyVac = ({ userVacancies }) => {
+const AllMyVac = ({ userVacancies, userId }) => {
   const [expandedIndex, setExpandedIndex] = useState(null);
-
+  const navigate = useNavigate();
+  const sendMessage = (id) => {
+    navigate(`/chat/${id}`);
+  };
   const handleToggleText = (index) => {
     setExpandedIndex(index === expandedIndex ? null : index);
   };
@@ -56,6 +59,16 @@ const AllMyVac = ({ userVacancies }) => {
                   </button>
                 )}
               </p>
+              {el.userId !== userId && (
+                <div className={css.wrapButton}>
+                  <button
+                    onClick={() => sendMessage(el.userId)}
+                    className={css.buttonCont}
+                  >
+                    Написати повідомлення
+                  </button>
+                </div>
+              )}
             </div>
           );
         }

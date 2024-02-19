@@ -84,7 +84,7 @@ const AllVacancy = ({ data, userId }) => {
           <h1 className={css.h1YourVac}>Вакансії</h1>
           <div className={css.wrapSmYour}>
             {filteredUserVacancies.length > 0 && (
-              <AllMyVac userVacancies={filteredUserVacancies} />
+              <AllMyVac userVacancies={filteredUserVacancies} userId={userId} />
             )}
             {filteredUserVacancies.length === 0 && (
               <h2 className={css.h2YouDonH}>Ще немає доданих вакансії</h2>

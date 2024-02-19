@@ -135,7 +135,7 @@ const Auth = () => {
           firstName: firstName,
           username: userName,
           userId: userId,
-          balance: "0",
+          balance: 0,
           inBlock: false,
           role: hr
             ? "hr"

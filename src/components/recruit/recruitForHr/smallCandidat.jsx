@@ -53,7 +53,7 @@ const SmallCandidat = ({ data, allWorker }) => {
       <h1 className={css.h1YourVac}>Всі кандитати</h1>
       <div className={css.wrapSmYour}>
         {filteredUserVacancies.length > 0 && filteredUserVacancies && (
-          <AllCandidat allWorker={filteredUserVacancies} />
+          <AllCandidat allWorker={filteredUserVacancies} userId={userId} />
         )}
         {filteredUserVacancies.length === 0 && (
           <h2 className={css.h2YouDonH}>Кандитатів ще немає</h2>

@@ -4,7 +4,7 @@ import HeaderWhite from "../standartComponent/header/headerWhite";
 import Article from "./article";
 import css from "./blog.module.css";
 import ListCat from "./listCat";
-const Blog = ({ data }) => {
+const Blog = ({ data, windowDimensions }) => {
   const [category, setCategory] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [visibleArticles, setVisibleArticles] = useState(2);
@@ -20,7 +20,7 @@ const Blog = ({ data }) => {
 
   return (
     <>
-      <HeaderWhite />
+      <HeaderWhite windowDimensions={windowDimensions} />
       <section className={css.blogWrap}>
         <div className={css.titleWrapBlog}>
           <h1 className={css.blogH1}>Блог</h1>
